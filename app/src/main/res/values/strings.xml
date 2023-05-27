@@ -2,4 +2,22 @@
     <string name="app_name">Frutify</string>
     <string name="home">home</string>
     <string name="profile">profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="product_name">mango</string>
+    <string name="edit">edit</string>
+    <string name="price">Rp 50.000</string>
+    <string name="fruit">Fruit</string>
+    <string name="name">Name</string>
+    <string name="desc">Description</string>
+    <string name="cost">price</string>
+    <string name="content_desc_scan">Scan Image</string>
+    <string name="quality">Quality</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="fullname">Fullname</string>
+    <string name="address">Address</string>
+    <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="save">SAVE</string>
 </resources>
