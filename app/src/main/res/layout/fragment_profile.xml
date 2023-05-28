@@ -34,7 +34,7 @@
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="20sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/tv_fruit"
         tools:ignore="UnusedAttribute" />
 
@@ -87,7 +87,7 @@
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="20sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -113,7 +113,7 @@
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="20sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -139,7 +139,7 @@
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="20sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -165,7 +165,7 @@
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="20sp"
         tools:ignore="UnusedAttribute" />
 
     <Button
@@ -178,9 +178,5 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/rounded"
         android:backgroundTint="@color/primary_blue" />
-
-
-
-
 
 </LinearLayout>
