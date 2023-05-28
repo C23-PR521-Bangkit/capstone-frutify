@@ -20,4 +20,9 @@
     <string name="new_password">New Password</string>
     <string name="old_password">Old Password</string>
     <string name="save">SAVE</string>
+    <string name="content_description_btn_camera_back">button back to home screen</string>
+    <string name="content_description_btn_camera_info">info dialog</string>
+    <string name="content_descrption_btn_gallery">pick image from gallery</string>
+    <string name="content_description_btn_shutter_camera">take a photo</string>
+    <string name="content_description_btn_switch_camera">rotate camera</string>
 </resources>
