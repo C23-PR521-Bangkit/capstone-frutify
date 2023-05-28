@@ -11,4 +11,9 @@
     //primary
     <color name="primary_blue">#015AAA</color>
     <color name="secondary_blue">#8AC4F9</color>
+    <color name="light_gray_100">#EDEDED</color>
+    <color name="light_gray_500">#BABABA</color>
+    <color name="secondary_500">#12c4c8</color>
+    <color name="old_green">#4F12C4C8</color>
+
 </resources>
