@@ -30,11 +30,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:autofillHints=""
-        android:background="@drawable/et_rounded"
+        android:background="@drawable/bg_form_01"
+        android:paddingVertical="13dp"
+        android:paddingHorizontal="10.40dp"
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="13sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -56,11 +58,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:autofillHints=""
-        android:background="@drawable/et_rounded"
+        android:background="@drawable/bg_form_01"
+        android:paddingVertical="13dp"
+        android:paddingHorizontal="10.40dp"
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintTop_toBottomOf="@id/tv_fruit"
         tools:ignore="UnusedAttribute" />
 
@@ -83,11 +87,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:autofillHints=""
-        android:background="@drawable/et_rounded"
+        android:background="@drawable/bg_form_01"
+        android:paddingVertical="13dp"
+        android:paddingHorizontal="10.40dp"
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="13sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -109,11 +115,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:autofillHints=""
-        android:background="@drawable/et_rounded"
+        android:background="@drawable/bg_form_01"
+        android:paddingVertical="13dp"
+        android:paddingHorizontal="10.40dp"
         android:gravity="start"
         android:lineHeight="20dp"
         android:padding="8dp"
-        android:textSize="12sp"
+        android:textSize="13sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -154,12 +162,13 @@
         android:layout_marginTop="10dp" />
 
     <Button
+        android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save"
-        android:textSize="20sp"
-        android:layout_marginStart="20dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/primary_blue" />
+        android:background="@drawable/rounded"
+        android:text="@string/save"
+        android:textSize="16sp"
+        app:backgroundTint="@null" />
 </LinearLayout>

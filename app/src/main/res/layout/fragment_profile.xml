@@ -169,14 +169,14 @@
         tools:ignore="UnusedAttribute" />
 
     <Button
+        android:id="@+id/btn_save_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save"
-        android:textSize="20sp"
-        android:layout_marginStart="20dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
         android:background="@drawable/rounded"
-        android:backgroundTint="@color/primary_blue" />
+        android:text="@string/save"
+        android:textSize="16sp"
+        app:backgroundTint="@null" />
 
 </LinearLayout>
