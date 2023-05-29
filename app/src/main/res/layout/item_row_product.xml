@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="6.50dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/bg_textfield_accent"
+            android:background="@drawable/bg_textfield_primary"
             android:paddingHorizontal="15.60dp"
             android:paddingTop="2.60dp"
             android:paddingBottom="2.60dp"

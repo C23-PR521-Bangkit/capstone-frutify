@@ -10,7 +10,7 @@
     <string name="fruit">Fruit</string>
     <string name="name">Name</string>
     <string name="desc">Description</string>
-    <string name="cost">price</string>
+    <string name="cost">Price</string>
     <string name="content_desc_scan">Scan Image</string>
     <string name="quality">Quality</string>
     <string name="email">Email</string>
@@ -25,11 +25,11 @@
     <string name="content_descrption_btn_gallery">pick image from gallery</string>
     <string name="content_description_btn_shutter_camera">take a photo</string>
     <string name="content_description_btn_switch_camera">rotate camera</string>
-    <string name="login">Sign-In</string>
+    <string name="login">LOGIN</string>
     <string name="enter_email">entry your email</string>
     <string name="password">Password</string>
     <string name="const_text_auth_question_login">don\'t have an account?</string>
-    <string name="register">Register</string>
+    <string name="register">REGISTER NOW</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

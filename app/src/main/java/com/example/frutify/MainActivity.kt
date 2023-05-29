@@ -8,13 +8,16 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.frutify.databinding.ActivityMainBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
-import com.example.frutify.ui.dashboard.home.HomeFragment
+import com.example.frutify.ui.dashboard.home.Product2Fragment
+import com.example.frutify.ui.dashboard.home.ProductFragment
 import com.example.frutify.ui.dashboard.profile.ProfileFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val DEBUG_TAG = Helper.DEBUG_TAG
+    private val fromBuyer = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +30,18 @@ class MainActivity : AppCompatActivity() {
 
         //fragment navbar
         val profileFragment = ProfileFragment()
-        val homeFragment = HomeFragment()
+        val productFragment = ProductFragment()
+        val product2Fragment = Product2Fragment()
 
-        switchFragment(homeFragment)
+        switchFragment(productFragment)
 
         binding.navbarView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
-                    switchFragment(homeFragment)
+                    if(fromBuyer){
+                        switchFragment(product2Fragment)
+                    }
+                    switchFragment(productFragment)
                     true
                 }
                 R.id.profile -> {
@@ -45,6 +52,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.fab.setOnClickListener { startActivity(Intent(this, EditActivity::class.java)) }
+
+        Log.d(DEBUG_TAG, "onCreate: All setup!");
     }
 
     private fun switchFragment(fragment: Fragment) {

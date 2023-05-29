@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvItem"
+    android:layout_width="wrap_content"
+    android:layout_height="240dp"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="4dp"
+    android:background="@color/white"
+    app:cardCornerRadius="3dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivImg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/placeholder"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="Product Name"
+                android:textColor="@color/primary_blue"
+                android:maxLines="2"
+                android:textStyle="bold"
+                android:textSize="13dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvCategory2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Fruit Type"
+                    android:textColor="#1E1E1E"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="2dp"
+                    android:gravity="center"
+                    android:text="Good"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_textfield_primary"
+                    android:textSize="11dp" />
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/tvHasil2"-->
+    <!--                android:paddingHorizontal="4dp"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginRight="3dp"-->
+    <!--                android:gravity="center"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:text="Gizi tercukupi"-->
+    <!--                android:textStyle="bold"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="8dp"-->
+    <!--                android:textAllCaps="false"-->
+    <!--                android:background="@drawable/bg_textfield_primary"-->
+    <!--                android:paddingBottom="2dp"-->
+    <!--                android:paddingTop="4dp" />-->
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="#fff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp"
+                    android:textColor="#393939"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="999.999"
+                    android:textColor="#393939"
+                    android:textStyle="bold"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvSeller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginHorizontal="4dp"
+                android:text="Seller name"
+                android:textColor="#1E1E1E"
+                android:maxLines="2"
+                android:textSize="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
