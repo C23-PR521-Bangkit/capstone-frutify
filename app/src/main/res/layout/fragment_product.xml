@@ -27,65 +27,6 @@
         android:background="@color/light_gray_100">
 
         <!-- custom navbar-->
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_margin="0dp"
-            android:background="@color/primary_blue"
-            android:gravity="center_vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0sp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:paddingBottom="2dp"
-                    android:visibility="visible"
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
-                    android:src="@drawable/ic_left_back"
-                    android:id="@+id/ivBack"
-                    app:tint="@color/white"
-                    android:layout_marginLeft="3sp"/>
-
-                <TextView
-                    android:id="@+id/tvTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:text="Produk"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true"
-                android:paddingRight="18sp"
-                android:paddingLeft="18sp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/divClose"
-                    android:layout_width="10sp"
-                    android:layout_height="10sp"
-                    android:src="@drawable/baseline_add_24"
-                    app:tint="#c5c5c5" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
