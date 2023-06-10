@@ -7,12 +7,11 @@ import android.util.Log
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.frutify.databinding.ActivityMainBinding
-import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.ui.dashboard.edit.EditActivity
 import com.example.frutify.ui.dashboard.home.Product2Fragment
 import com.example.frutify.ui.dashboard.home.ProductFragment
 import com.example.frutify.ui.dashboard.profile.ProfileFragment
-import com.example.frutify.utils.SharePref
+import com.example.frutify.utils.Helper
 
 class MainActivity : AppCompatActivity() {
 

@@ -44,7 +44,7 @@ class SharePref(context: Context) {
     }
 
     val getToken = sharedPref.getString(Constant.PREF_TOKEN, "")
-    val getUserId = sharedPref.getString(Constant.PREF_USER_ID, "")
+    val getUserId = sharedPref.getInt(Constant.PREF_USER_ID, 0)
     val isLogin = sharedPref.getBoolean(Constant.PREF_IS_LOGIN, false)
     val getUserName = sharedPref.getString(Constant.PREF_USERNAME, "")
     val getEmail = sharedPref.getString(Constant.PREF_EMAIL, "")
