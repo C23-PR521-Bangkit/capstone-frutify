@@ -7,6 +7,7 @@ import android.os.Handler
 import com.example.frutify.MainActivity
 import com.example.frutify.R
 import com.example.frutify.databinding.ActivitySplashScreenBinding
+import com.example.frutify.ui.dashboard.auth.ChooseRolesActivity
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.utils.SharePref
 
@@ -33,7 +34,7 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun checkLogin(){
         token = "bearer ${sharePref.getToken}"
         if (sharePref.isLogin == false) {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, ChooseRolesActivity::class.java))
             finish()
         }else{
             startActivity(Intent(this, MainActivity::class.java))

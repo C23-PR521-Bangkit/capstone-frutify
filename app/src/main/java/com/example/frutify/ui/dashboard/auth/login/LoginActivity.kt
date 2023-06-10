@@ -38,9 +38,9 @@ class LoginActivity : AppCompatActivity() {
                 binding.edEmail.requestFocus()
             }
 
-            if (binding.edEmail.error?.length ?: 0 > 0) {
+            if ((binding.edEmail.error?.length ?: 0) > 0) {
                 binding.edEmail.requestFocus()
-            } else if (binding.edPassword.error?.length ?: 0 > 0) {
+            } else if ((binding.edPassword.error?.length ?: 0) > 0) {
                 binding.edPassword.requestFocus()
             } else {
 

@@ -2,6 +2,7 @@ package com.example.frutify.utils
 
 class Constant {
     companion object {
+        val ROLES = "ROLES"
         val PREF_IS_LOGIN = "PREF_IS_LOGIN"
         val PREF_EMAIL = "PREF_EMAIL"
         val PREF_USERNAME = "PREF_USERNAME"

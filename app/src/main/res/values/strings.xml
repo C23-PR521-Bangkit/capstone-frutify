@@ -43,4 +43,7 @@
     <string name="invalid_email">masukan email!</string>
     <string name="invalid_password">masukan password!</string>
     <string name="wrong_number">masukan nomer hp!</string>
+    <string name="choose_login">SIlahkan Pilih Tipe Login</string>
+    <string name="Seller">Seller</string>
+    <string name="buyyer">Buyer</string>
 </resources>
