@@ -3,22 +3,27 @@ package com.example.frutify.ui.dashboard.edit
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.camera.core.CameraSelector
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.frutify.databinding.ActivityEditBinding
 import com.example.frutify.ui.dashboard.camera.CameraActivity
+import com.example.frutify.utils.Utility
+import com.example.frutify.utils.Utility.rotateBitmap
 import com.example.frutify.utils.rotateFile
+import com.example.frutify.utils.uriToFile
 import java.io.File
 
 class EditActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditBinding
-//    private var getFile: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +39,13 @@ class EditActivity : AppCompatActivity() {
             )
         }
 
-        binding.storyImage.setOnClickListener { startCameraX() }
+        binding.previewImage.setOnClickListener { startCameraX() }
 
+        //receive file from intent galery
+        val myFile = intent.getSerializableExtra("pictureUri") as? File
+        val ImageBitmap = BitmapFactory.decodeFile(myFile?.path)
+
+        binding.previewImage.setImageBitmap(ImageBitmap)
     }
 
     private fun startCameraX() {
@@ -78,7 +88,7 @@ class EditActivity : AppCompatActivity() {
             myFile?.let { file ->
                 rotateFile(file, isBackCamera)
 //                getFile = file
-                binding.storyImage.setImageBitmap(BitmapFactory.decodeFile(file.path))
+                binding.previewImage.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
         }
     }

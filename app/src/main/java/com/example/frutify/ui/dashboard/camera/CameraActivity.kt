@@ -1,12 +1,16 @@
 package com.example.frutify.ui.dashboard.camera
 
 import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -17,6 +21,8 @@ import com.example.frutify.MainActivity
 import com.example.frutify.R
 import com.example.frutify.databinding.ActivityCameraBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
+import com.example.frutify.utils.Utility
+import com.example.frutify.utils.uriToFile
 import java.nio.file.Files.createFile
 
 class CameraActivity : AppCompatActivity() {
@@ -24,6 +30,7 @@ class CameraActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private lateinit var binding: ActivityCameraBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
@@ -36,6 +43,8 @@ class CameraActivity : AppCompatActivity() {
 
             startCamera()
         }
+        binding.btnGallery.setOnClickListener { startGallery() }
+        binding.btnBack.setOnClickListener { onBackPressed() }
     }
 
     public override fun onResume() {
@@ -106,6 +115,29 @@ class CameraActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    //intent galery
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImageUri = result.data?.data as Uri
+            selectedImageUri.let { uri ->
+                val myFile = uriToFile(uri, this)
+                val intent = Intent(this, EditActivity::class.java)
+                intent.putExtra("pictureUri", myFile)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun hideSystemUI() {
