@@ -8,13 +8,17 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.frutify.databinding.ActivityMainBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
-import com.example.frutify.ui.dashboard.home.Product2Fragment
-import com.example.frutify.ui.dashboard.home.ProductFragment
+import com.example.frutify.ui.dashboard.home.HomeBuyerFragment
+import com.example.frutify.ui.dashboard.home.HomeSellerFragment
 import com.example.frutify.ui.dashboard.profile.ProfileFragment
+import com.example.frutify.utils.Constant
+import com.example.frutify.utils.Helper
+import com.example.frutify.utils.SharePref
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var sharePref: SharePref
 
     private val DEBUG_TAG = Helper.DEBUG_TAG
     private val fromBuyer = true
@@ -26,22 +30,33 @@ class MainActivity : AppCompatActivity() {
 
         //navigation bar
         binding.navbarView.background = null
-        binding.navbarView.menu.get(1).isEnabled = false
+        binding.navbarView.menu[1].isEnabled = false
+
+        sharePref = SharePref(this)
 
         //fragment navbar
         val profileFragment = ProfileFragment()
-        val productFragment = ProductFragment()
-        val product2Fragment = Product2Fragment()
+        val homeSellerFragment = HomeSellerFragment()
+        val homeBuyerFragment = HomeBuyerFragment()
 
-        switchFragment(productFragment)
+        //mengganti fragment roles
+        val defaultFragment = if (sharePref.getRoles) {
+            homeSellerFragment
+        } else {
+            homeBuyerFragment
+        }
+
+        switchFragment(defaultFragment)
 
         binding.navbarView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
-                    if(fromBuyer){
-                        switchFragment(product2Fragment)
+                    val selectedFragment = if (sharePref.getRoles) {
+                        homeSellerFragment
+                    } else {
+                        homeBuyerFragment
                     }
-                    switchFragment(productFragment)
+                    switchFragment(selectedFragment)
                     true
                 }
                 R.id.profile -> {

@@ -12,10 +12,10 @@ import com.example.frutify.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Product2Fragment#newInstance} factory method to
+ * Use the {@link HomeBuyerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Product2Fragment extends Fragment {
+public class HomeBuyerFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Product2Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Product2Fragment() {
+    public HomeBuyerFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class Product2Fragment extends Fragment {
      * @return A new instance of fragment Product2Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Product2Fragment newInstance(String param1, String param2) {
-        Product2Fragment fragment = new Product2Fragment();
+    public static HomeBuyerFragment newInstance(String param1, String param2) {
+        HomeBuyerFragment fragment = new HomeBuyerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class Product2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product2, container, false);
+        return inflater.inflate(R.layout.fragment_home_buyer, container, false);
     }
 }
