@@ -48,7 +48,8 @@ class SharePref(context: Context) {
     val isLogin = sharedPref.getBoolean(Constant.PREF_IS_LOGIN, false)
     val getUserName = sharedPref.getString(Constant.PREF_USERNAME, "")
     val getEmail = sharedPref.getString(Constant.PREF_EMAIL, "")
-    val getRoles = sharedPref.getBoolean(Constant.ROLES, true)
+    val getRoles = sharedPref.getString(Constant.ROLES, "")
+    val getUserRoles = sharedPref.getString(Constant.PREF_USER_ROLE, "")
 
 
 }

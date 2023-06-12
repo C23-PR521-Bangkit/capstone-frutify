@@ -4,6 +4,7 @@ import com.example.frutify.data.model.ListProductResponse
 import com.example.frutify.data.model.LoginResponse
 import com.example.frutify.data.model.RegisterResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -22,7 +23,8 @@ interface ApiService {
     fun register(
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("phone") phone: String
+        @Field("phone") phone: String,
+        @Field("role") role: String
     ) : Call<RegisterResponse>
 
     @POST("product/list")
@@ -31,4 +33,5 @@ interface ApiService {
         @Field("search") search: String? = null,
         @Field("user_id") userId: Int
     ) : Call<ListProductResponse>
+
 }

@@ -14,6 +14,7 @@ class Constant {
         val PREF_USER_ADDRESS = "PREF_USER_ADDRESS"
         val PREF_TOKEN = "PREF_TOKEN"
         val PREF_TOKEN_EXP = "PREF_TOKEN_EXP"
+        val PREF_USER_ROLE = "USER_ROLE"
 
         val name = "name"
         val photo_url = "photo_url"

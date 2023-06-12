@@ -11,6 +11,7 @@ import com.example.frutify.data.model.ProductItem
 
 class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>() {
     private val productList = mutableListOf<ProductItem>()
+    private lateinit var listener: OnProductClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,7 +34,7 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
         notifyDataSetChanged()
     }
 
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imgProduct: ImageView = itemView.findViewById(R.id.img_item_photo)
         private val tvProductName: TextView = itemView.findViewById(R.id.tv_item_name)
         private val tvProductPrice: TextView = itemView.findViewById(R.id.tv_item_cost)
@@ -44,6 +45,18 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
             tvProductPrice.text = product.PRODUCTPRICE.toString()
 
             // Implementasikan logika lainnya sesuai kebutuhan Anda
+
+            itemView.setOnClickListener {
+                listener.onProductClick(product)
+            }
         }
+    }
+
+    fun setOnProductClickListener(listener: OnProductClickListener) {
+        this.listener = listener
+    }
+
+    interface OnProductClickListener {
+        fun onProductClick(product: ProductItem)
     }
 }

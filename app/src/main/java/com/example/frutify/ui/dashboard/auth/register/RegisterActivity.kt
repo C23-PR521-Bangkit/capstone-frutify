@@ -55,15 +55,16 @@ class RegisterActivity : AppCompatActivity() {
                 val password = binding.edPassword.text.toString().trim()
                 val phone = binding.edPhone.text.toString().trim()
 
-                register(email, password, phone)
+                val role = sharePref.getRoles
+                register(email, password, phone, role!!)
             }
         }
 
     }
 
-    private fun register(email: String, password: String, phone: String) {
+    private fun register(email: String, password: String, phone: String, role: String) {
 
-        authViewModel.register(email, password, phone)
+        authViewModel.register(email, password, phone, role)
         authViewModel.isLoading.observe(this) {
             showLoading(it)
         }

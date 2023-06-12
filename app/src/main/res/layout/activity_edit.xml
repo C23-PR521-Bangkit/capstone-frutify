@@ -169,7 +169,8 @@
                 android:paddingHorizontal="10.40dp"
                 android:paddingVertical="13dp"
                 android:textSize="20sp"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                android:inputType="number"/>
 
             <TextView
                 android:id="@+id/tv_scan"

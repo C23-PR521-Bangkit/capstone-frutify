@@ -1,5 +1,6 @@
 package com.example.frutify.ui.dashboard.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.FragmentHomeSellerBinding
+import com.example.frutify.ui.dashboard.edit.EditActivity
 import com.example.frutify.utils.SharePref
 import org.json.JSONObject
 import retrofit2.http.Query
@@ -46,6 +48,15 @@ class HomeSellerFragment : Fragment() {
                 homeSellerAdapter.submitList(products)
             }
         }
+
+        homeSellerAdapter.setOnProductClickListener(object : HomeSellerAdapter.OnProductClickListener {
+            override fun onProductClick(product: ProductItem) {
+                val intent = Intent(requireContext(), EditActivity::class.java)
+                intent.putExtra("productName", product.PRODUCTNAME)
+                intent.putExtra("productPrice", product.PRODUCTPRICE)
+                startActivity(intent)
+            }
+        })
 
         binding.ivSearch.setOnClickListener {
             val query = binding.etSearch.text.toString()

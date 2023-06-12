@@ -53,9 +53,9 @@ class AuthViewModel : ViewModel() {
         })
     }
 
-    fun register(email: String, password: String, phone: String) {
+    fun register(email: String, password: String, phone: String, role: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().register(email, password, phone)
+        val client = ApiConfig.getApiService().register(email, password, phone, role)
         client.enqueue(object : Callback<RegisterResponse>{
             override fun onResponse(
                 call: Call<RegisterResponse>,

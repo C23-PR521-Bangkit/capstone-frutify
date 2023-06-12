@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val homeBuyerFragment = HomeBuyerFragment()
 
         //mengganti fragment roles
-        val defaultFragment = if (sharePref.getRoles) {
+        val defaultFragment = if (sharePref.getUserRoles == "SELLER") {
             homeSellerFragment
         } else {
             homeBuyerFragment
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         binding.navbarView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
-                    val selectedFragment = if (sharePref.getRoles) {
+                    val selectedFragment = if (sharePref.getUserRoles == "SELLER") {
                         homeSellerFragment
                     } else {
                         homeBuyerFragment

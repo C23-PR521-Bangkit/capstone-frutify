@@ -30,6 +30,11 @@ class EditActivity : AppCompatActivity() {
         binding = ActivityEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val productName = intent.getStringExtra("productName")
+        val price = intent.getIntExtra("productPrice", 0)
+        binding.etFruit.setText(productName)
+        binding.etPrice.setText(price.toString())
+
         //ask permissions
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
