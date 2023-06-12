@@ -27,6 +27,17 @@ interface ApiService {
         @Field("role") role: String
     ) : Call<RegisterResponse>
 
+    @POST("auth/update")
+    @FormUrlEncoded
+    fun updateUser(
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("phone") phone: String,
+        @Field("fullname") fullname: String,
+        @Field("address") address: String,
+        @Field("new_password") newPassword: String? = null
+    ) : Call<RegisterResponse>
+
     @POST("product/list")
     @FormUrlEncoded
     fun getListProduct(
