@@ -1,5 +1,6 @@
 package com.example.frutify.data.network
 
+import com.example.frutify.data.model.ListProductResponse
 import com.example.frutify.data.model.LoginResponse
 import com.example.frutify.data.model.RegisterResponse
 import retrofit2.Call
@@ -23,4 +24,11 @@ interface ApiService {
         @Field("password") password: String,
         @Field("phone") phone: String
     ) : Call<RegisterResponse>
+
+    @POST("product/list")
+    @FormUrlEncoded
+    fun getListProduct(
+        @Field("search") search: String? = null,
+        @Field("user_id") userId: Int
+    ) : Call<ListProductResponse>
 }
