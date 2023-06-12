@@ -45,4 +45,17 @@ interface ApiService {
         @Field("user_id") userId: Int
     ) : Call<ListProductResponse>
 
+    @POST("product/manage/create")
+    @FormUrlEncoded
+    fun addProduct(
+        @Field("fruit_id") fruitId: Int,
+        @Field("user_id") userId: Int,
+        @Field("name") name: String,
+        @Field("description") description: String,
+        @Field("price") price: Int,
+        @Field("unit") unit: String,
+        @Field("filename") filename: String,
+        @Field("quality") quality: String
+    ) : Call<RegisterResponse>
+
 }
