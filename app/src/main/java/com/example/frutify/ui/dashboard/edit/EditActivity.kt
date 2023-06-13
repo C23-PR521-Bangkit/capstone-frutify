@@ -75,23 +75,37 @@ class EditActivity : AppCompatActivity() {
         //receive data from homesellerfragment //detail
         val product = intent.getParcelableExtra<ProductItem>("product")
         val fromHomeSeller = intent.getBooleanExtra("from_home_seller", false)
+        val fromBtnDelete = intent.getBooleanExtra("from_btn_delete", false)
         val fruitId = product?.FRUITID
         val position = fruitIdArray.indexOf(fruitId)
 
         if (fromHomeSeller) {
-            binding.btnUpdate.visibility = View.VISIBLE
-            binding.btnSave.visibility = View.GONE
+            binding.apply {
+                btnUpdate.visibility = View.VISIBLE
+                btnSave.visibility = View.GONE
+                btnDelete.visibility = View.GONE
+
+                etFruit.setSelection(position)
+                etName.setText(product?.PRODUCTNAME)
+                etDesc.setText(product?.PRODUCTDESCRIPTION)
+                etPrice.setText(product?.PRODUCTPRICE!!.toString())
+
+            }
+        } else if (fromBtnDelete) {
+            binding.apply {
+                btnUpdate.visibility = View.GONE
+                btnSave.visibility = View.GONE
+                btnDelete.visibility = View.VISIBLE
+
+                etFruit.setSelection(position)
+                etName.setText(product?.PRODUCTNAME)
+                etDesc.setText(product?.PRODUCTDESCRIPTION)
+                etPrice.setText(product?.PRODUCTPRICE!!.toString())
+            }
         } else {
-            binding.btnUpdate.visibility = View.GONE
             binding.btnSave.visibility = View.VISIBLE
         }
 
-        binding.apply {
-            etFruit.setSelection(position)
-            etName.setText(product?.PRODUCTNAME)
-            etDesc.setText(product?.PRODUCTDESCRIPTION)
-            etPrice.setText(product?.PRODUCTPRICE!!.toString())
-        }
 
         //receive file from intent galery
         val myFile = intent.getSerializableExtra("pictureUri") as? File
@@ -126,6 +140,13 @@ class EditActivity : AppCompatActivity() {
 
             updateProduct(productId!!, fruit, userId, name, desc, price, unit, filename, quality)
         }
+
+        binding.btnDelete.setOnClickListener {
+            val product_id = product?.PRODUCTID
+            val userId = sharePref.getUserId
+
+            deleteProduct(product_id!!, userId)
+        }
     }
 
     private fun startCameraX() {
@@ -150,6 +171,7 @@ class EditActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
@@ -182,8 +204,17 @@ class EditActivity : AppCompatActivity() {
         unit: String,
         filename: String,
         quality: String
-    ){
-        productViewModel.addProduct(fruit_id, user_id, name, description, price, unit, filename, quality)
+    ) {
+        productViewModel.addProduct(
+            fruit_id,
+            user_id,
+            name,
+            description,
+            price,
+            unit,
+            filename,
+            quality
+        )
         loadingAndError()
         productViewModel.addProductResult.observe(this) {
             Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
@@ -202,17 +233,37 @@ class EditActivity : AppCompatActivity() {
         unit: String,
         filename: String,
         quality: String
-    ){
-        productViewModel.updateProduct(product_id, fruit_id, user_id, name, description, price, unit, filename, quality)
+    ) {
+        productViewModel.updateProduct(
+            product_id,
+            fruit_id,
+            user_id,
+            name,
+            description,
+            price,
+            unit,
+            filename,
+            quality
+        )
         loadingAndError()
-        productViewModel.updateProductResult.observe(this){
+        productViewModel.updateProductResult.observe(this) {
             Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
 
-    private fun loadingAndError(){
+    private fun deleteProduct(product_id: Int, user_id: Int) {
+        productViewModel.deleteProduct(product_id, user_id)
+        loadingAndError()
+        productViewModel.deleteProductResult.observe(this) {
+            Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun loadingAndError() {
         productViewModel.isLoading.observe(this) {
             showLoading(it)
         }

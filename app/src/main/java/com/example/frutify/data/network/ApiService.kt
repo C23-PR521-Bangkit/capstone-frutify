@@ -72,4 +72,10 @@ interface ApiService {
         @Field("quality") quality: String
     ) : Call<RegisterResponse>
 
+    @POST("product/manage/delete")
+    @FormUrlEncoded
+    fun deleteProduct(
+        @Field("product_id") productId: Int,
+        @Field("user_id") userId: Int
+    ) : Call<RegisterResponse>
 }

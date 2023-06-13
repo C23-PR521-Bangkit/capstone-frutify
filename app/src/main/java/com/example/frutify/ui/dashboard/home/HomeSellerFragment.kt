@@ -57,6 +57,7 @@ class HomeSellerFragment : Fragment() {
                 intent.putExtra("product", product)
                 intent.putExtra("from_home_seller", true)
                 startActivity(intent)
+
             }
         })
 
