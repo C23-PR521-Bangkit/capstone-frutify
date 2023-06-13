@@ -58,4 +58,18 @@ interface ApiService {
         @Field("quality") quality: String
     ) : Call<RegisterResponse>
 
+    @POST("product/manage/update")
+    @FormUrlEncoded
+    fun updateProduct(
+        @Field("product_id") productId: Int,
+        @Field("fruit_id") fruitId: Int,
+        @Field("user_id") userId: Int,
+        @Field("name") name: String,
+        @Field("description") description: String,
+        @Field("price") price: Int,
+        @Field("unit") unit: String,
+        @Field("filename") filename: String,
+        @Field("quality") quality: String
+    ) : Call<RegisterResponse>
+
 }

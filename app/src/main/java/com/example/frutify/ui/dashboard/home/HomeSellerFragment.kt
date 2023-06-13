@@ -52,8 +52,10 @@ class HomeSellerFragment : Fragment() {
         homeSellerAdapter.setOnProductClickListener(object : HomeSellerAdapter.OnProductClickListener {
             override fun onProductClick(product: ProductItem) {
                 val intent = Intent(requireContext(), EditActivity::class.java)
-                intent.putExtra("productName", product.PRODUCTNAME)
-                intent.putExtra("productPrice", product.PRODUCTPRICE)
+//                intent.putExtra("productName", product.PRODUCTNAME)
+//                intent.putExtra("productPrice", product.PRODUCTPRICE)
+                intent.putExtra("product", product)
+                intent.putExtra("from_home_seller", true)
                 startActivity(intent)
             }
         })

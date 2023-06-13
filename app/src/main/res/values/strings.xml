@@ -46,4 +46,6 @@
     <string name="choose_login">SIlahkan Pilih Tipe Login</string>
     <string name="Seller">Seller</string>
     <string name="buyyer">Buyer</string>
+    <string name="update">UPDATE</string>
+    <string name="delete">DELETE</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.example.frutify.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ProductItem(
 
     @field:SerializedName("PRODUCT_DESCRIPTION")
@@ -30,4 +33,4 @@ data class ProductItem(
 
     @field:SerializedName("PRODUCT_UNIT")
     val PRODUCTUNIT: String? = null
-)
+) : Parcelable

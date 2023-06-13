@@ -16,9 +16,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import com.example.frutify.MainActivity
 import com.example.frutify.R
+import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.ActivityEditBinding
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
@@ -44,11 +46,6 @@ class EditActivity : AppCompatActivity() {
         productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         sharePref = SharePref(this)
 
-        val productName = intent.getStringExtra("productName")
-        val price = intent.getIntExtra("productPrice", 0)
-//        binding.etFruit.setText(productName)
-        binding.etPrice.setText(price.toString())
-
         //ask permissions
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -57,7 +54,6 @@ class EditActivity : AppCompatActivity() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
-
 
         binding.previewImage.setOnClickListener { startCameraX() }
 
@@ -76,6 +72,26 @@ class EditActivity : AppCompatActivity() {
 
         val idFruit = spinnerFruit.selectedItemPosition
 
+        //receive data from homesellerfragment //detail
+        val product = intent.getParcelableExtra<ProductItem>("product")
+        val fromHomeSeller = intent.getBooleanExtra("from_home_seller", false)
+        val fruitId = product?.FRUITID
+        val position = fruitIdArray.indexOf(fruitId)
+
+        if (fromHomeSeller) {
+            binding.btnUpdate.visibility = View.VISIBLE
+            binding.btnSave.visibility = View.GONE
+        } else {
+            binding.btnUpdate.visibility = View.GONE
+            binding.btnSave.visibility = View.VISIBLE
+        }
+
+        binding.apply {
+            etFruit.setSelection(position)
+            etName.setText(product?.PRODUCTNAME)
+            etDesc.setText(product?.PRODUCTDESCRIPTION)
+            etPrice.setText(product?.PRODUCTPRICE!!.toString())
+        }
 
         //receive file from intent galery
         val myFile = intent.getSerializableExtra("pictureUri") as? File
@@ -93,7 +109,22 @@ class EditActivity : AppCompatActivity() {
             val unit = "kg"
             val filename = "apel"
             val quality = binding.tvQuality.text.toString().trim()
+
             addProduct(fruit, userId, name, desc, price, unit, filename, quality)
+        }
+
+        binding.btnUpdate.setOnClickListener {
+            val productId = product?.PRODUCTID
+            val fruit = fruitIdArray[idFruit]
+            val userId = sharePref.getUserId
+            val name = binding.etName.text.toString().trim()
+            val desc = binding.etDesc.text.toString().trim()
+            val price = binding.etPrice.text.toString().toInt()
+            val unit = "kg"
+            val filename = "apel"
+            val quality = binding.tvQuality.text.toString().trim()
+
+            updateProduct(productId!!, fruit, userId, name, desc, price, unit, filename, quality)
         }
     }
 
@@ -153,17 +184,41 @@ class EditActivity : AppCompatActivity() {
         quality: String
     ){
         productViewModel.addProduct(fruit_id, user_id, name, description, price, unit, filename, quality)
+        loadingAndError()
+        productViewModel.addProductResult.observe(this) {
+            Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun updateProduct(
+        product_id: Int,
+        fruit_id: Int,
+        user_id: Int,
+        name: String,
+        description: String,
+        price: Int,
+        unit: String,
+        filename: String,
+        quality: String
+    ){
+        productViewModel.updateProduct(product_id, fruit_id, user_id, name, description, price, unit, filename, quality)
+        loadingAndError()
+        productViewModel.updateProductResult.observe(this){
+            Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun loadingAndError(){
         productViewModel.isLoading.observe(this) {
             showLoading(it)
         }
         productViewModel.error.observe(this) { error ->
             // Show error message
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-        }
-        productViewModel.addProductResult.observe(this) {
-            Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
         }
     }
 

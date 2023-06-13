@@ -99,7 +99,7 @@
 
             <!-- EditText desc -->
             <EditText
-                android:id="@+id/et_desc"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -130,7 +130,7 @@
 
             <!-- EditText name -->
             <EditText
-                android:id="@+id/et_name"
+                android:id="@+id/et_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -230,12 +230,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/rounded"
                 android:text="@string/save"
                 android:textSize="16sp"
                 app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rounded"
+                android:text="@string/update"
+                android:textSize="16sp"
+                app:backgroundTint="@null"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rounded"
+                android:text="@string/delete"
+                android:textSize="16sp"
+                app:backgroundTint="@color/red"
+                android:visibility="gone"/>
 
             <!-- ProgressBar -->
 
