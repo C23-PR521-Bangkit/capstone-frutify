@@ -8,6 +8,7 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.frutify.databinding.ActivityMainBinding
 import com.example.frutify.ui.dashboard.cart.CartActivity
+import com.example.frutify.ui.dashboard.cart.CartJavaActivity
 import com.example.frutify.ui.dashboard.edit.EditActivity
 import com.example.frutify.ui.dashboard.home.buyer.HomeBuyerFragment
 import com.example.frutify.ui.dashboard.home.seller.HomeSellerFragment
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             binding.fab.setOnClickListener { startActivity(Intent(this, EditActivity::class.java)) }
         }else{
             binding.fab.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_shopping_cart)) // gak bisa
-            binding.fab.setOnClickListener { startActivity(Intent(this, CartActivity::class.java)) }
+            binding.fab.setOnClickListener { startActivity(Intent(this, CartJavaActivity::class.java)) }
         }
 
     }
