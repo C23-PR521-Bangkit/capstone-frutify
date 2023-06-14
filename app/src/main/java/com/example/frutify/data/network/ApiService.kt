@@ -45,6 +45,12 @@ interface ApiService {
         @Field("user_id") userId: Int
     ) : Call<ListProductResponse>
 
+    @POST("product/list")
+    @FormUrlEncoded
+    fun getListProductBuyer(
+        @Field("search") search: String? = null
+    ) : Call<ListProductResponse>
+
     @POST("product/manage/create")
     @FormUrlEncoded
     fun addProduct(

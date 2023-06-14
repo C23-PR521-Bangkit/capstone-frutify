@@ -1,4 +1,4 @@
-package com.example.frutify.ui.dashboard.home
+package com.example.frutify.ui.dashboard.home.seller
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.frutify.R
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.ui.dashboard.edit.EditActivity
@@ -47,7 +48,11 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
             tvProductName.text = product.PRODUCTNAME
             tvProductPrice.text = product.PRODUCTPRICE.toString()
 
+            val imageUrl = "https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/uploads?path=" + product.PRODUCTFILEPATH
 
+            Glide.with(itemView)
+                .load(imageUrl) // Error image if unable to load
+                .into(imgProduct)
             // Implementasikan logika lainnya sesuai kebutuhan Anda
 
             itemView.setOnClickListener {

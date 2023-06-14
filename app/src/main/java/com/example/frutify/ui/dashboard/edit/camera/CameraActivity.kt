@@ -1,4 +1,4 @@
-package com.example.frutify.ui.dashboard.camera
+package com.example.frutify.ui.dashboard.edit.camera
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -53,6 +54,15 @@ class CameraActivity : AppCompatActivity() {
 
             startCamera()
         }
+        val fromHomeSeller = intent.getBooleanExtra("fromHomeSeller", false)
+
+        if (fromHomeSeller) {
+            binding.btnGallery.isEnabled = false
+            binding.btnGallery.alpha = 0f
+
+            binding.btnGallery.setOnClickListener(null) // Menonaktifkan respons klik
+        }
+
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnBack.setOnClickListener { onBackPressed() }
     }

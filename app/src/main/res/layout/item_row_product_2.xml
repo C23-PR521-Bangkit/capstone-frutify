@@ -58,7 +58,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvCategory2"
+                    android:id="@+id/tv_fruit_type"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -69,6 +69,7 @@
                     android:textSize="11dp" />
 
                 <TextView
+                    android:id="@+id/btn_quality"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

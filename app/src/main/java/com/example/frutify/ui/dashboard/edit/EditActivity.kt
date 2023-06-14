@@ -15,16 +15,18 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.frutify.MainActivity
 import com.example.frutify.R
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.ActivityEditBinding
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
-import com.example.frutify.ui.dashboard.camera.CameraActivity
+import com.example.frutify.ui.dashboard.edit.camera.CameraActivity
 import com.example.frutify.utils.SharePref
 import com.example.frutify.utils.Utility
 import com.example.frutify.utils.Utility.rotateBitmap
@@ -58,7 +60,7 @@ class EditActivity : AppCompatActivity() {
             )
         }
 
-        binding.previewImage.setOnClickListener { startCameraX() }
+//        binding.previewImage.setOnClickListener { startCameraX() }
 
         // Dropdown
         val spinnerFruit: Spinner = binding.etFruit
@@ -82,16 +84,31 @@ class EditActivity : AppCompatActivity() {
         val fruitId = product?.FRUITID
         val position = fruitIdArray.indexOf(fruitId)
 
+        binding.previewImage.setOnClickListener {
+            if (fromHomeSeller) {
+                val intent = Intent(this, CameraActivity::class.java)
+                intent.putExtra("fromHomeSeller", true) // Mengirim data fromHomeSeller
+                launcherIntentCameraX.launch(intent)
+            } else {
+                startCameraX()
+            }
+        }
+
         if (fromHomeSeller) {
             binding.apply {
                 btnUpdate.visibility = View.VISIBLE
                 btnSave.visibility = View.GONE
                 btnDelete.visibility = View.GONE
 
+//                val imageUrl = "https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/uploads?path=" + product?.PRODUCTFILEPATH
+
                 etFruit.setSelection(position)
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
+//                Glide.with(this@EditActivity)
+//                    .load(imageUrl) // Error image if unable to load
+//                    .into(binding.previewImage)
 
             }
         } else if (fromBtnDelete) {
@@ -100,10 +117,15 @@ class EditActivity : AppCompatActivity() {
                 btnSave.visibility = View.GONE
                 btnDelete.visibility = View.VISIBLE
 
+                val imageUrl = "https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/uploads?path=" + product?.PRODUCTFILEPATH
+
                 etFruit.setSelection(position)
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
+                Glide.with(this@EditActivity)
+                    .load(imageUrl) // Error image if unable to load
+                    .into(binding.previewImage)
             }
         } else {
             binding.btnSave.visibility = View.VISIBLE
@@ -138,10 +160,13 @@ class EditActivity : AppCompatActivity() {
             val desc = binding.etDesc.text.toString().trim()
             val price = binding.etPrice.text.toString().toInt()
             val unit = "kg"
-            val filename = "apel"
-            val quality = binding.tvQuality.text.toString().trim()
+            val filenameUpdate = product?.PRODUCTFILEPATH
+            val qualityUpdate = product?.PRODUCTQUALITY
 
-            updateProduct(productId!!, fruit, userId, name, desc, price, unit, filename, quality)
+            val updatedFilename = filename ?: filenameUpdate
+            val updatedQuality = quality ?: qualityUpdate
+
+            updateProduct(productId!!, fruit, userId, name, desc, price, unit, updatedFilename!!, updatedQuality!!)
         }
 
         binding.btnDelete.setOnClickListener {

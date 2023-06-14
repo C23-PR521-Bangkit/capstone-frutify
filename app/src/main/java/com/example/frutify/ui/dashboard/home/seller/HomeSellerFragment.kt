@@ -1,4 +1,4 @@
-package com.example.frutify.ui.dashboard.home
+package com.example.frutify.ui.dashboard.home.seller
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,8 +13,6 @@ import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.FragmentHomeSellerBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
 import com.example.frutify.utils.SharePref
-import org.json.JSONObject
-import retrofit2.http.Query
 
 class HomeSellerFragment : Fragment() {
 
@@ -56,7 +54,7 @@ class HomeSellerFragment : Fragment() {
 //                intent.putExtra("productPrice", product.PRODUCTPRICE)
                 intent.putExtra("product", product)
                 intent.putExtra("from_home_seller", true)
-                startActivity(intent)
+                startActivityForResult(intent, EDIT_ACTIVITY_REQUEST_CODE)
 
             }
         })
@@ -78,5 +76,9 @@ class HomeSellerFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        private const val EDIT_ACTIVITY_REQUEST_CODE = 100
     }
 }

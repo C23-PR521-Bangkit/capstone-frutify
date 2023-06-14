@@ -19,6 +19,9 @@ class ProductViewModel : ViewModel() {
     private val _productResult = MutableLiveData<List<ProductItem>?>()
     val productResult: LiveData<List<ProductItem>?> = _productResult
 
+    private val _productBuyerResult = MutableLiveData<List<ProductItem>?>()
+    val productBuyerResult: LiveData<List<ProductItem>?> = _productBuyerResult
+
     private val _addProductResult = MutableLiveData<RegisterResponse?>()
     val addProductResult: LiveData<RegisterResponse?> = _addProductResult
 
@@ -46,6 +49,32 @@ class ProductViewModel : ViewModel() {
                     val listProductResponse = response.body()
                     val products = listProductResponse?.PAYLOAD?.product
                     _productResult.postValue(products as List<ProductItem>?)
+                    error.postValue(null)
+                }
+                _isLoading.value = false
+            }
+
+            override fun onFailure(call: Call<ListProductResponse>, t: Throwable) {
+                _isLoading.postValue(false)
+                Log.e(TAG, "onFailure Call: ${t.message}")
+                error.postValue(t.message)
+            }
+        })
+    }
+
+    fun getListProductBuyer(search: String? = null) {
+        _isLoading.value = true
+
+        val client = ApiConfig.getApiService().getListProductBuyer(search)
+        client.enqueue(object : Callback<ListProductResponse> {
+            override fun onResponse(
+                call: Call<ListProductResponse>,
+                response: Response<ListProductResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val listProductResponse = response.body()
+                    val products = listProductResponse?.PAYLOAD?.product
+                    _productBuyerResult.postValue(products as List<ProductItem>?)
                     error.postValue(null)
                 }
                 _isLoading.value = false
