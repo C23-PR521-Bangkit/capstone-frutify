@@ -106,7 +106,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         authViewModel.error.observe(this) { error ->
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            //bdrl
+            //Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
 
     }
