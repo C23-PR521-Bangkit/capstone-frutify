@@ -37,6 +37,9 @@ class EditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditBinding
     private lateinit var productViewModel: ProductViewModel
     private lateinit var sharePref: SharePref
+    private var getFile: File? = null
+    private var filename: String? = null
+    private var quality: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,6 +116,8 @@ class EditActivity : AppCompatActivity() {
 
         binding.previewImage.setImageBitmap(ImageBitmap)
 
+        filename = intent.getStringExtra(EXTRA_FILENAME)
+        quality = intent.getStringExtra(EXTRA_QUALITY)
 
         binding.btnSave.setOnClickListener {
             val fruit = fruitIdArray[idFruit]
@@ -121,10 +126,8 @@ class EditActivity : AppCompatActivity() {
             val desc = binding.etDesc.text.toString().trim()
             val price = binding.etPrice.text.toString().toInt()
             val unit = "kg"
-            val filename = "apel"
-            val quality = binding.tvQuality.text.toString().trim()
 
-            addProduct(fruit, userId, name, desc, price, unit, filename, quality)
+            addProduct(fruit, userId, name, desc, price, unit, filename!!, quality!!)
         }
 
         binding.btnUpdate.setOnClickListener {
@@ -179,7 +182,17 @@ class EditActivity : AppCompatActivity() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
+        val data = it.data
+
         if (it.resultCode == CAMERA_X_RESULT) {
+            val dataFileName = data?.getStringExtra(EXTRA_FILENAME)
+            dataFileName.let {
+                filename = it
+            }
+            val dataQuality = data?.getStringExtra(EXTRA_QUALITY)
+            dataQuality.let {
+                quality = it
+            }
             val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 it.data?.getSerializableExtra("picture", File::class.java)
             } else {
@@ -189,7 +202,7 @@ class EditActivity : AppCompatActivity() {
             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
             myFile?.let { file ->
                 rotateFile(file, isBackCamera)
-//                getFile = file
+                getFile = file
                 binding.previewImage.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
         }
@@ -281,5 +294,7 @@ class EditActivity : AppCompatActivity() {
         const val CAMERA_X_RESULT = 200
         private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+        const val EXTRA_FILENAME = "filename"
+        const val EXTRA_QUALITY = "quality"
     }
 }

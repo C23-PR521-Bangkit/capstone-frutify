@@ -10,6 +10,9 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
 import com.example.frutify.R
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -96,6 +99,11 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
 private fun createCustomTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     return File.createTempFile(currentTimestamp, ".jpg", storageDir)
+}
+
+fun File.toImageBodyPart(): MultipartBody.Part {
+    val requestFile = this.asRequestBody("image/*".toMediaTypeOrNull())
+    return MultipartBody.Part.createFormData("image", name, requestFile)
 }
 
 @SuppressLint("ConstantLocale")

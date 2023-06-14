@@ -1,13 +1,13 @@
 package com.example.frutify.data.network
 
+import com.example.frutify.data.model.ImageClasifyResponse
 import com.example.frutify.data.model.ListProductResponse
 import com.example.frutify.data.model.LoginResponse
 import com.example.frutify.data.model.RegisterResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
+import java.io.File
 
 interface ApiService {
 
@@ -78,4 +78,10 @@ interface ApiService {
         @Field("product_id") productId: Int,
         @Field("user_id") userId: Int
     ) : Call<RegisterResponse>
+
+    @Multipart
+    @POST("fruit/classify")
+    fun doImageClasify(
+        @Part image: MultipartBody.Part
+    ): Call<ImageClasifyResponse>
 }
