@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.frutify.data.model.ListProductResponse
-import com.example.frutify.data.model.LoginResponse
-import com.example.frutify.data.model.ProductItem
-import com.example.frutify.data.model.RegisterResponse
+import com.example.frutify.data.model.*
 import com.example.frutify.data.network.ApiConfig
 import com.example.frutify.utils.Constant.Companion.name
 import retrofit2.Call
@@ -19,8 +16,8 @@ class ProductViewModel : ViewModel() {
     private val _productResult = MutableLiveData<List<ProductItem>?>()
     val productResult: LiveData<List<ProductItem>?> = _productResult
 
-    private val _productBuyerResult = MutableLiveData<List<ProductItem>?>()
-    val productBuyerResult: LiveData<List<ProductItem>?> = _productBuyerResult
+    private val _productBuyerResult = MutableLiveData<List<ProductItemBuyer>?>()
+    val productBuyerResult: LiveData<List<ProductItemBuyer>?> = _productBuyerResult
 
     private val _addProductResult = MutableLiveData<RegisterResponse?>()
     val addProductResult: LiveData<RegisterResponse?> = _addProductResult
@@ -66,21 +63,21 @@ class ProductViewModel : ViewModel() {
         _isLoading.value = true
 
         val client = ApiConfig.getApiService().getListProductBuyer(search)
-        client.enqueue(object : Callback<ListProductResponse> {
+        client.enqueue(object : Callback<ProductListBuyerResponse> {
             override fun onResponse(
-                call: Call<ListProductResponse>,
-                response: Response<ListProductResponse>
+                call: Call<ProductListBuyerResponse>,
+                response: Response<ProductListBuyerResponse>
             ) {
                 if (response.isSuccessful) {
                     val listProductResponse = response.body()
                     val products = listProductResponse?.PAYLOAD?.product
-                    _productBuyerResult.postValue(products as List<ProductItem>?)
+                    _productBuyerResult.postValue(products as List<ProductItemBuyer>?)
                     error.postValue(null)
                 }
                 _isLoading.value = false
             }
 
-            override fun onFailure(call: Call<ListProductResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ProductListBuyerResponse>, t: Throwable) {
                 _isLoading.postValue(false)
                 Log.e(TAG, "onFailure Call: ${t.message}")
                 error.postValue(t.message)

@@ -1,9 +1,6 @@
 package com.example.frutify.data.network
 
-import com.example.frutify.data.model.ImageClasifyResponse
-import com.example.frutify.data.model.ListProductResponse
-import com.example.frutify.data.model.LoginResponse
-import com.example.frutify.data.model.RegisterResponse
+import com.example.frutify.data.model.*
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -49,7 +46,7 @@ interface ApiService {
     @FormUrlEncoded
     fun getListProductBuyer(
         @Field("search") search: String? = null
-    ) : Call<ListProductResponse>
+    ) : Call<ProductListBuyerResponse>
 
     @POST("product/manage/create")
     @FormUrlEncoded
