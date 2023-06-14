@@ -1,11 +1,16 @@
-package com.example.frutify.ui.dashboard.camera
+package com.example.frutify.ui.dashboard.edit.camera
 
+import android.app.Activity
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -17,12 +22,15 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.frutify.MainActivity
 import com.example.frutify.R
+import com.example.frutify.data.viewmodel.ClasifyViewModel
 import com.example.frutify.databinding.ActivityCameraBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
 import com.example.frutify.utils.Utility
 import com.example.frutify.utils.uriToFile
+import java.io.FileOutputStream
 import java.nio.file.Files.createFile
 
 class CameraActivity : AppCompatActivity() {
@@ -30,11 +38,14 @@ class CameraActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private lateinit var binding: ActivityCameraBinding
+    private lateinit var clasifyViewModel: ClasifyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        clasifyViewModel = ViewModelProvider(this)[ClasifyViewModel::class.java]
 
         binding.btnCapture.setOnClickListener { takePhoto() }
         binding.switchCamera.setOnClickListener {
@@ -43,6 +54,15 @@ class CameraActivity : AppCompatActivity() {
 
             startCamera()
         }
+        val fromHomeSeller = intent.getBooleanExtra("fromHomeSeller", false)
+
+        if (fromHomeSeller) {
+            binding.btnGallery.isEnabled = false
+            binding.btnGallery.alpha = 0f
+
+            binding.btnGallery.setOnClickListener(null) // Menonaktifkan respons klik
+        }
+
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnBack.setOnClickListener { onBackPressed() }
     }
@@ -104,14 +124,28 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val intent = Intent()
-                    intent.putExtra("picture", photoFile)
-                    intent.putExtra(
-                        "isBackCamera",
-                        cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
-                    )
-                    setResult(EditActivity.CAMERA_X_RESULT, intent)
-                    finish()
+                    val rotatedBitmap = Utility.rotateBitmap(BitmapFactory.decodeFile(photoFile.path), cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
+                    val rotatedFile = createTempFile("rotated_", ".jpg", cacheDir)
+                    rotatedFile.deleteOnExit()
+                    val outputStream = FileOutputStream(rotatedFile)
+                    rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                    outputStream.close()
+
+                    clasifyViewModel.clasifyImage(rotatedFile)
+                    clasifyViewModel.imageClasifyResult.observe(this@CameraActivity) { imageClasifyResponse ->
+                        val filename = imageClasifyResponse?.PAYLOAD?.filename.toString()
+                        val quality = imageClasifyResponse?.PAYLOAD?.quality.toString()
+                        val intentRes = Intent(this@CameraActivity, EditActivity::class.java)
+                        intentRes.putExtra(EditActivity.EXTRA_FILENAME, filename)
+                        intentRes.putExtra(EditActivity.EXTRA_QUALITY, quality)
+                        intentRes.putExtra("picture", photoFile)
+                        intentRes.putExtra(
+                            "isBackCamera",
+                            cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
+                        )
+                        setResult(EditActivity.CAMERA_X_RESULT, intentRes)
+                        finish()
+                    }
                 }
             }
         )
@@ -133,9 +167,16 @@ class CameraActivity : AppCompatActivity() {
             val selectedImageUri = result.data?.data as Uri
             selectedImageUri.let { uri ->
                 val myFile = uriToFile(uri, this)
-                val intent = Intent(this, EditActivity::class.java)
-                intent.putExtra("pictureUri", myFile)
-                startActivity(intent)
+                clasifyViewModel.clasifyImage(myFile)
+                clasifyViewModel.imageClasifyResult.observe(this){
+                    val filename = it?.PAYLOAD?.filename.toString()
+                    val quality = it?.PAYLOAD?.quality.toString()
+                    val intent = Intent(this, EditActivity::class.java)
+                    intent.putExtra(EditActivity.EXTRA_FILENAME, filename)
+                    intent.putExtra(EditActivity.EXTRA_QUALITY, quality)
+                    intent.putExtra("pictureUri", myFile)
+                    startActivity(intent)
+                }
             }
         }
     }

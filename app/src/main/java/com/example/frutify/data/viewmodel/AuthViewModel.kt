@@ -21,6 +21,9 @@ class AuthViewModel : ViewModel() {
     private val _registerResult = MutableLiveData<RegisterResponse?>()
     val registerResult: LiveData<RegisterResponse?> = _registerResult
 
+    private val _updateResult = MutableLiveData<RegisterResponse?>()
+    val updateResult: LiveData<RegisterResponse?> = _updateResult
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -53,10 +56,10 @@ class AuthViewModel : ViewModel() {
         })
     }
 
-    fun register(email: String, password: String, phone: String) {
+    fun register(email: String, password: String, phone: String, role: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().register(email, password, phone)
-        client.enqueue(object : Callback<RegisterResponse>{
+        val client = ApiConfig.getApiService().register(email, password, phone, role)
+        client.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(
                 call: Call<RegisterResponse>,
                 response: Response<RegisterResponse>
@@ -70,6 +73,39 @@ class AuthViewModel : ViewModel() {
                         val errorMessage = registerResponse?.MESSAGE ?: "Unknown error occurred."
                         error.postValue(errorMessage)
                     }
+                    _isLoading.value = false
+                }
+            }
+
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                _isLoading.postValue(false)
+                Log.e(TAG, "onFailure Call: ${t.message}")
+                error.postValue(t.message)
+            }
+
+        })
+    }
+
+    fun updateUser(
+        email: String,
+        password: String,
+        phone: String,
+        fullname: String,
+        address: String,
+        newPassword: String? = null
+    ) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService()
+            .updateUser(email, password, phone, fullname, address, newPassword)
+        client.enqueue(object : Callback<RegisterResponse> {
+            override fun onResponse(
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val updateResponse = response.body()
+                    _updateResult.postValue(updateResponse)
+                    error.postValue(null) // Clear the error value
                     _isLoading.value = false
                 }
             }

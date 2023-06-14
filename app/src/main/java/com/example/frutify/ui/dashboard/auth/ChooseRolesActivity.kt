@@ -22,18 +22,18 @@ class ChooseRolesActivity : AppCompatActivity() {
         sharePref = SharePref(this)
 
         binding.buttonSeller.setOnClickListener {
-            saveRole(true)
+            saveRole("SELLER")
             navigateToLogin()
         }
 
         binding.buttonBuyer.setOnClickListener {
-            saveRole(false)
+            saveRole("BUYER")
             navigateToLogin()
         }
     }
 
-    private fun saveRole(role: Boolean) {
-        sharePref.setBooleanPreference(Constant.ROLES, role)
+    private fun saveRole(role: String) {
+        sharePref.setStringPreference(Constant.ROLES, role)
     }
 
     private fun navigateToLogin() {

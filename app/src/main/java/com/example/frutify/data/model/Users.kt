@@ -26,5 +26,8 @@ data class Users(
     val USERADDRESS: String? = null,
 
     @field:SerializedName("USER_FULLNAME")
-    val USERFULLNAME: String? = null
+    val USERFULLNAME: String? = null,
+
+    @field:SerializedName("USER_ROLE")
+    val USERROLE: String? = null
 )

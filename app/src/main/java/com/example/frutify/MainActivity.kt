@@ -8,10 +8,9 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.frutify.databinding.ActivityMainBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
-import com.example.frutify.ui.dashboard.home.HomeBuyerFragment
-import com.example.frutify.ui.dashboard.home.HomeSellerFragment
+import com.example.frutify.ui.dashboard.home.buyer.HomeBuyerFragment
+import com.example.frutify.ui.dashboard.home.seller.HomeSellerFragment
 import com.example.frutify.ui.dashboard.profile.ProfileFragment
-import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Helper
 import com.example.frutify.utils.SharePref
 
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         val homeBuyerFragment = HomeBuyerFragment()
 
         //mengganti fragment roles
-        val defaultFragment = if (sharePref.getRoles) {
+        val defaultFragment = if (sharePref.getUserRoles == "SELLER") {
             homeSellerFragment
         } else {
             homeBuyerFragment
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         binding.navbarView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
-                    val selectedFragment = if (sharePref.getRoles) {
+                    val selectedFragment = if (sharePref.getUserRoles == "SELLER") {
                         homeSellerFragment
                     } else {
                         homeBuyerFragment

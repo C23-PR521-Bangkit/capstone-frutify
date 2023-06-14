@@ -7,9 +7,10 @@
     android:orientation="vertical"
     tools:context=".ui.dashboard.edit.EditActivity">
 
+    <!-- Bagian Header -->
     <RelativeLayout
         android:id="@+id/divHeader"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_margin="0dp"
         android:background="@color/primary_blue"
@@ -44,15 +45,18 @@
 
     </RelativeLayout>
 
+    <!-- Konten -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- LinearLayout Utama -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- TextView fruit -->
             <TextView
                 android:id="@+id/tv_fruit"
                 android:layout_width="wrap_content"
@@ -62,20 +66,16 @@
                 android:text="@string/fruit"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold" />
 
-
-            <EditText
+            <!-- EditText fruit -->
+            <Spinner
                 android:id="@+id/et_fruit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="46dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="20dp"
-                android:autofillHints=""
                 android:background="@drawable/bg_form_01"
                 android:gravity="start"
                 android:lineHeight="20dp"
@@ -85,6 +85,7 @@
                 android:textSize="20sp"
                 tools:ignore="UnusedAttribute" />
 
+            <!-- TextView name -->
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
@@ -96,8 +97,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- EditText desc -->
             <EditText
-                android:id="@+id/et_desc"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -114,6 +116,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_fruit"
                 tools:ignore="UnusedAttribute" />
 
+            <!-- TextView desc -->
             <TextView
                 android:id="@+id/tv_desc"
                 android:layout_width="wrap_content"
@@ -125,8 +128,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- EditText name -->
             <EditText
-                android:id="@+id/et_name"
+                android:id="@+id/et_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -143,6 +147,13 @@
                 android:textSize="20sp"
                 tools:ignore="UnusedAttribute" />
 
+            <!-- TextView price -->
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
@@ -154,6 +165,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- EditText price -->
             <EditText
                 android:id="@+id/et_price"
                 android:layout_width="match_parent"
@@ -169,8 +181,10 @@
                 android:paddingHorizontal="10.40dp"
                 android:paddingVertical="13dp"
                 android:textSize="20sp"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                android:inputType="number" />
 
+            <!-- TextView scan -->
             <TextView
                 android:id="@+id/tv_scan"
                 android:layout_width="wrap_content"
@@ -182,6 +196,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- ImageView preview_image -->
             <ImageView
                 android:id="@+id/preview_image"
                 android:layout_width="match_parent"
@@ -197,6 +212,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
+            <!-- TextView quality -->
             <TextView
                 android:id="@+id/tv_quality"
                 android:layout_width="wrap_content"
@@ -208,20 +224,48 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- Button save -->
             <Button
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/rounded"
                 android:text="@string/save"
                 android:textSize="16sp"
                 app:backgroundTint="@null" />
 
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rounded"
+                android:text="@string/update"
+                android:textSize="16sp"
+                app:backgroundTint="@null"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rounded"
+                android:text="@string/delete"
+                android:textSize="16sp"
+                app:backgroundTint="@color/red"
+                android:visibility="gone"/>
+
+            <!-- ProgressBar -->
+
+
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>

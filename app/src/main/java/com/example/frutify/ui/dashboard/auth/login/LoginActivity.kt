@@ -81,6 +81,10 @@ class LoginActivity : AppCompatActivity() {
                         login.PAYLOAD?.users?.USERFULLNAME ?: ""
                     )
                     setStringPreference(
+                        Constant.PREF_USER_ROLE,
+                        login.PAYLOAD?.users?.USERROLE ?: ""
+                    )
+                    setStringPreference(
                         Constant.PREF_USER_ADDRESS,
                         login.PAYLOAD?.users?.USERADDRESS ?: ""
                     )
