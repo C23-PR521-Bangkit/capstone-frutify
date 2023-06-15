@@ -70,6 +70,7 @@ class RegisterActivity : AppCompatActivity() {
 
         authViewModel.error.observe(this) { error ->
             // Show error message
+            // bdrl
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
         authViewModel.registerResult.observe(this) {

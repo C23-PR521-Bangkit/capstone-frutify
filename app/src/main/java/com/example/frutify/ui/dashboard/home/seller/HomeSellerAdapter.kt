@@ -1,6 +1,7 @@
 package com.example.frutify.ui.dashboard.home.seller
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.example.frutify.utils.Helper
 class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>() {
     private val productList = mutableListOf<ProductItem>()
     private lateinit var listener: OnProductClickListener
+    public var TAG = Helper.DEBUG_TAG
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -50,7 +52,8 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
             tvProductName.text = product.PRODUCTNAME
             tvProductPrice.text = product.PRODUCTPRICE.toString()
 
-            val imageUrl = Constant.BASE_URL_2 + product.PRODUCTFILEPATH
+            val imageUrl = Constant.BASE_URL_2 + "uploads?path=" + product.PRODUCTFILEPATH
+            Log.d(TAG, "bind: " + imageUrl)
 
             Glide.with(itemView)
                 .load(imageUrl)

@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.LruCache;
@@ -73,7 +77,30 @@ public class CartJavaActivity extends AppCompatActivity {
                 if(storeSelected.equals("")){
                     Toast.makeText(CartJavaActivity.this, "Mohon pilih seller yang akan dipesan", Toast.LENGTH_SHORT).show();
                 }else{
-                    String buildMsg = "Halo " + storeOrdered + ", saya ingin memesan";
+                    new AlertDialog.Builder(CartJavaActivity.this)
+                        .setTitle("KONFIRMASI PESANAN")
+                        .setMessage("Pesanan akan diteruskan ke WhatsApp penjual dan item akan dihapus dari keranjang")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String buildMsg = "Halo " + storeOrdered.optString("USER_FULLNAME") + ", saya ingin memesan:";
+                                JSONArray items = storeOrdered.optJSONArray("ITEM");
+                                for(int i = 0; i < items.length(); i++){
+                                    JSONObject aItem = items.optJSONObject(i);
+                                    changeCartItem(- Integer.parseInt(aItem.optString("TOTAL_QTY")), aItem.optString("PRODUCT_ID"));
+                                    buildMsg += "\n" + i+1 + ". x" + aItem.optString("TOTAL_QTY") + " " +
+                                            aItem.optString("PRODUCT_NAME") +
+                                            " (Rp " + (Integer.valueOf(aItem.optString("PRODUCT_PRICE")) * Integer.valueOf(aItem.optString("TOTAL_QTY"))) + ")";
+                                }
+                                buildMsg += "\nTOTAL = Rp " + storeOrdered.optString("TOTAL");
+                                // send WA
+                                Intent i = new Intent(Intent.ACTION_VIEW);
+                                i.setData(Uri.parse("https://api.whatsapp.com/send?phone="+storeOrdered.optString("USER_PHONE") + "&text=" + buildMsg));
+                                startActivity(i);
+                                recreate();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .show();
                 }
             }
         });
@@ -146,6 +173,7 @@ public class CartJavaActivity extends AppCompatActivity {
         }
 
         divContainer.removeAllViews();
+        divContainer.setVisibility(View.VISIBLE);
         for(int i=0; i < data.length(); i++) {
             JSONObject aMenu = data.optJSONObject(i);
             if(aMenu == null || aMenu.optString("TOTAL").equals("0"))    continue;
@@ -158,6 +186,9 @@ public class CartJavaActivity extends AppCompatActivity {
             Button btnFlagActive = rowView.findViewById(R.id.btnFlagActive);
 
             String userId = aMenu.optString("USER_ID");
+            if(storeSelected.equals(userId)) {
+                tvTotal.setText("Rp " + aMenu.optString("TOTAL"));
+            }
 
             JSONArray items = aMenu.optJSONArray("ITEM");
             divContainerProduct.removeAllViews();
@@ -166,7 +197,6 @@ public class CartJavaActivity extends AppCompatActivity {
             }
 
             tvName.setText(aMenu.optString("USER_FULLNAME"));
-            tvTotal.setText("Rp " + aMenu.optInt("TOTAL"));
             if(storeSelected.equals(userId)){
                 btnFlagActive.setVisibility(View.VISIBLE);
             }else{
@@ -287,9 +317,11 @@ public class CartJavaActivity extends AppCompatActivity {
     public void selectStore(String userId, JSONObject aMenu){
         if(storeSelected.equals(userId)){
             storeSelected = "";
+            tvTotal.setText("Rp 0");
         }else{
             storeSelected = userId;
             storeOrdered = aMenu;
+            tvTotal.setText("Rp " + aMenu.optInt("TOTAL"));
         }
     }
 

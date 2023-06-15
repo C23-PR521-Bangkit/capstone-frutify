@@ -11,6 +11,7 @@ import com.example.frutify.R
 import com.example.frutify.data.model.ProductItemBuyer
 import com.example.frutify.data.viewmodel.CartViewModel
 import com.example.frutify.databinding.ActivityDetailBuyerBinding
+import com.example.frutify.ui.dashboard.cart.CartJavaActivity
 import com.example.frutify.utils.Helper
 import com.example.frutify.utils.SharePref
 
@@ -56,6 +57,7 @@ class DetailBuyerActivity : AppCompatActivity() {
         cartViewModel.addToCart(userId, productId, qty)
         cartViewModel.addCartResult.observe(this) {
             Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, CartJavaActivity::class.java))
         }
     }
 }

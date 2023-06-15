@@ -2,8 +2,8 @@
     <string name="app_name">Frutify</string>
     <string name="app_name_caps">FRUTIFY</string>
     <string name="home">HOME</string>
-    <string name="cart">CART</string>
-    <string name="profile">Profile</string>
+    <string name="cart">KERANJANG</string>
+    <string name="profile">PROFIL</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="product_name">Mango</string>
@@ -16,12 +16,12 @@
     <string name="content_desc_scan">Scan Image</string>
     <string name="quality">Quality : </string>
     <string name="email">Email</string>
-    <string name="phone">Phone</string>
-    <string name="fullname">Fullname</string>
-    <string name="address">Address</string>
-    <string name="new_password">New Password</string>
-    <string name="old_password">Old Password</string>
-    <string name="save">SAVE</string>
+    <string name="phone">No. Telepon</string>
+    <string name="fullname">Nama Lengkap</string>
+    <string name="address">Alamat</string>
+    <string name="new_password">Password Baru</string>
+    <string name="old_password">Password Lama</string>
+    <string name="save">SIMPAN</string>
     <string name="content_description_btn_camera_back">button back to home screen</string>
     <string name="content_description_btn_camera_info">info dialog</string>
     <string name="content_descrption_btn_gallery">pick image from gallery</string>
@@ -30,7 +30,7 @@
     <string name="login">LOGIN</string>
     <string name="enter_email">entry your email</string>
     <string name="password">Password</string>
-    <string name="const_text_auth_question_login">don\'t have an account?</string>
+    <string name="const_text_auth_question_login">Tidak punya akun?</string>
     <string name="register">REGISTER NOW</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -40,7 +40,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="const_text_auth_question_register">Already have an account?</string>
+    <string name="const_text_auth_question_register">Sudah punya akun?</string>
     <string name="invalid_email">masukan email!</string>
     <string name="invalid_password">masukan password!</string>
     <string name="wrong_number">masukan nomer hp!</string>
@@ -48,9 +48,9 @@
     <string name="Seller">Seller</string>
     <string name="buyyer">Buyer</string>
     <string name="update">UPDATE</string>
-    <string name="delete">DELETE</string>
+    <string name="delete">HAPUS</string>
     <string name="placeholder_text">"Adipiscuntur conformavit contra dubio fecit, fungimur homini initia pro reddidisti, torquatus vexetur. Ab disserui ficta nominavi saluto. Conficiuntur divelli movere nostrud numeranda, tenebimus universas venisset. Afferrent domus octavio personae. Amicorum diesque efficeret inciderint ostendis putamus. Arbitratu confirmavit malunt necessitatibus pariuntur, postremo reliquisti scilicet scipio ultricies, urna vult.   Civibus disputata diu ferrentur filio, haec industriae malarum puto reperiuntur, similia ubi vis volutpat. Conetur consentinis eaque   "</string>
-    <string name="add_to_cart">Add To Cart</string>
+    <string name="add_to_cart">Tambah ke Keranjang</string>
     <string name="errorfield">Field Harus Diisi</string>
     <string name="LOGOUT">LOGOUT</string>
     <string name="good">Good</string>

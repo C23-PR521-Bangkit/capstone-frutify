@@ -92,7 +92,7 @@
                     android:maxLines="1"
                     android:text="Fruit Type"
                     android:textColor="#1E1E1E"
-                    android:textSize="13dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tvQuality"

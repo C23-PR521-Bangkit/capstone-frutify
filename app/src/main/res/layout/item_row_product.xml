@@ -34,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/img_item_photo"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
@@ -46,6 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textSize="16sp"
             android:ellipsize="end"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
             card_view:layout_constraintStart_toStartOf="@+id/tv_item_name"
@@ -55,8 +56,8 @@
 
         <TextView
             android:id="@+id/tvSelengkapnya"
-            android:layout_width="47dp"
-            android:layout_height="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginVertical="6.50dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/bg_textfield_primary"
@@ -65,22 +66,22 @@
             android:paddingBottom="2.60dp"
             android:text="@string/edit"
             android:textColor="@color/white"
-            android:textSize="10.40sp"
+            android:textSize="15sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_cost"
-            card_view:layout_constraintVertical_bias="0.17" />
+            card_view:layout_constraintVertical_bias="0.724" />
 
         <ImageView
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             android:src="@drawable/baseline_delete_24"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/tvSelengkapnya"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_cost"
-            card_view:layout_constraintVertical_bias="0.285" />
+            card_view:layout_constraintVertical_bias="0.466" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

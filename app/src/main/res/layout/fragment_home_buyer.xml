@@ -124,7 +124,7 @@
                         android:id="@+id/recycler_view_buyer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/item_row_product_2"
+                        tools:listitem="@layout/item_row_product_buyer"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="2"
                         />

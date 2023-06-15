@@ -70,6 +70,7 @@
 
                     <LinearLayout
                         android:id="@+id/divContainer"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
@@ -106,7 +107,7 @@
                         android:layout_alignParentTop="true"
                         android:text="Ringkasan Pesanan"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/labelTotalHarga"
@@ -116,7 +117,7 @@
                         android:layout_marginTop="4dp"
                         android:text="Total Semua"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tvTotal"
@@ -124,10 +125,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/labelTotalHarga"
                         android:layout_alignParentEnd="true"
-                        android:text="Rp. 0,00"
+                        android:text="Rp 0"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="17sp" />
 
                     <LinearLayout
                         android:id="@+id/divLanjut"
@@ -146,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="32dp"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                             android:text="PESAN SEKARANG"/>
 

@@ -1,5 +1,6 @@
 package com.example.frutify.ui.dashboard.home.buyer
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,20 +9,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.frutify.R
-import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.model.ProductItemBuyer
-import com.example.frutify.ui.dashboard.home.seller.HomeSellerAdapter
 import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Helper
-import org.w3c.dom.Text
 
 class HomeBuyerAdapter : RecyclerView.Adapter<HomeBuyerAdapter.ListViewHolder>() {
     private val productList = mutableListOf<ProductItemBuyer>()
     private var listener: OnProductClickListener? = null
+    var TAG = Helper.DEBUG_TAG
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val itemView = inflater.inflate(R.layout.item_row_product_2, parent, false)
+        val itemView = inflater.inflate(R.layout.item_row_product_buyer, parent, false)
         return ListViewHolder(itemView)
     }
 
@@ -59,7 +58,8 @@ class HomeBuyerAdapter : RecyclerView.Adapter<HomeBuyerAdapter.ListViewHolder>()
         }
 
         fun bind(product: ProductItemBuyer) {
-            val imageUrl = Constant.BASE_URL_2 + product.PRODUCTFILEPATH
+            val imageUrl = Constant.BASE_URL_2 + "uploads?path=" +  product.PRODUCTFILEPATH
+            Log.d(TAG, "bind: " + imageUrl)
 
             Glide.with(itemView)
                 .load(imageUrl)
