@@ -101,13 +101,13 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Login failed. Please check your email and/or password.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, login?.MESSAGE, Toast.LENGTH_SHORT).show()
             }
         }
 
         authViewModel.error.observe(this) { error ->
             //bdrl
-            //Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
 
     }

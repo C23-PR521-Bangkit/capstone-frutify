@@ -14,10 +14,7 @@ class SharePref(context: Context) {
         editor = sharedPref.edit()
     }
 
-    fun setStringPref(key: String, value: String) {
-        editor.putString(key, value)
-        editor.apply()
-    }
+
 
     fun setStringPreference(prefKey: String, value: String) {
         editor.putString(prefKey, value)
@@ -46,10 +43,12 @@ class SharePref(context: Context) {
     val getToken = sharedPref.getString(Constant.PREF_TOKEN, "")
     val getUserId = sharedPref.getInt(Constant.PREF_USER_ID, 0)
     val isLogin = sharedPref.getBoolean(Constant.PREF_IS_LOGIN, false)
-    val getUserName = sharedPref.getString(Constant.PREF_USERNAME, "")
+    val getPhone = sharedPref.getString(Constant.PREF_USER_PHONE, "")
     val getEmail = sharedPref.getString(Constant.PREF_EMAIL, "")
     val getRoles = sharedPref.getString(Constant.ROLES, "")
     val getUserRoles = sharedPref.getString(Constant.PREF_USER_ROLE, "")
+    val getFullname = sharedPref.getString(Constant.PREF_USER_FULLNAME, "")
+    val getAddress = sharedPref.getString(Constant.PREF_USER_ADDRESS, "")
 
 
 }

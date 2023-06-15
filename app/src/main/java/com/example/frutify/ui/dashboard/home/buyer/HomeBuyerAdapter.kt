@@ -11,10 +11,12 @@ import com.example.frutify.R
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.model.ProductItemBuyer
 import com.example.frutify.ui.dashboard.home.seller.HomeSellerAdapter
+import com.example.frutify.utils.Helper
 import org.w3c.dom.Text
 
 class HomeBuyerAdapter : RecyclerView.Adapter<HomeBuyerAdapter.ListViewHolder>() {
     private val productList = mutableListOf<ProductItemBuyer>()
+    private var listener: OnProductClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -37,7 +39,7 @@ class HomeBuyerAdapter : RecyclerView.Adapter<HomeBuyerAdapter.ListViewHolder>()
         notifyDataSetChanged()
     }
 
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imgProduct: ImageView = itemView.findViewById(R.id.ivImg)
         private val tvProductName: TextView = itemView.findViewById(R.id.tvName)
         private val tvProductPrice: TextView = itemView.findViewById(R.id.tvPrice)
@@ -45,8 +47,18 @@ class HomeBuyerAdapter : RecyclerView.Adapter<HomeBuyerAdapter.ListViewHolder>()
         private val quality: TextView = itemView.findViewById(R.id.btn_quality)
         private val fruitType: TextView = itemView.findViewById(R.id.tv_fruit_type)
 
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val product = productList[position]
+                    listener?.onProductClick(product)
+                }
+            }
+        }
+
         fun bind(product: ProductItemBuyer) {
-            val imageUrl = "https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/uploads?path=" + product.PRODUCTFILEPATH
+            val imageUrl = "https://220d-2404-8000-1039-1102-3dc4-50ff-6ea8-5664.ngrok-free.app/" + product.PRODUCTFILEPATH
 
             Glide.with(itemView)
                 .load(imageUrl)
@@ -56,13 +68,25 @@ class HomeBuyerAdapter : RecyclerView.Adapter<HomeBuyerAdapter.ListViewHolder>()
             tvProductPrice.text = product.PRODUCTPRICE.toString()
             tvSeller.text = product.USERFULLNAME
             quality.text = product.PRODUCTQUALITY
-            if (product.FRUITID == 1){
-                fruitType.text = "Apel"
-            } else if (product.FRUITID == 2){
-                fruitType.text = "Pisang"
-            } else if (product.FRUITID == 3){
-                fruitType.text == "Jeruk"
-            }
+            fruitType.text = getFruitTypeName(product.FRUITID!!)
+        }
+    }
+
+    fun setOnProductClickListener(listener: OnProductClickListener) {
+        this.listener = listener
+    }
+
+    interface OnProductClickListener {
+        fun onProductClick(product: ProductItemBuyer)
+    }
+
+    private fun getFruitTypeName(fruitId: Int): String {
+        return when (fruitId) {
+            1 -> "Apel"
+            2 -> "Pisang"
+            3 -> "Jeruk"
+            else -> ""
         }
     }
 }
+

@@ -39,11 +39,11 @@ class AuthViewModel : ViewModel() {
                     val loginResponse = response.body()
                     if (loginResponse?.STATUS == "SUCCESS") {
                         _loginResult.postValue(loginResponse)
-                        error.postValue(null) // Clear the error value
-                    } else {
-                        val errorMessage = loginResponse?.MESSAGE ?: "Unknown error occurred."
-                        error.postValue(errorMessage)
+                         // Clear the error value
+                    }else {
+                        error.postValue("Login failed. Please check your email and/or password.")
                     }
+
                     _isLoading.value = false
                 }
             }
