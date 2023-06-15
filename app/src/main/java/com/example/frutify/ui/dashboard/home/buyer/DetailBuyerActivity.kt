@@ -12,6 +12,7 @@ import com.example.frutify.data.model.ProductItemBuyer
 import com.example.frutify.data.viewmodel.CartViewModel
 import com.example.frutify.databinding.ActivityDetailBuyerBinding
 import com.example.frutify.ui.dashboard.cart.CartJavaActivity
+import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Helper
 import com.example.frutify.utils.SharePref
 
@@ -31,8 +32,7 @@ class DetailBuyerActivity : AppCompatActivity() {
 
         val productBuyer = intent.getParcelableExtra<ProductItemBuyer>("product")
 
-        val imageUrl =
-            Helper.BASE_URL + productBuyer?.PRODUCTFILEPATH
+        val imageUrl = Constant.BASE_URL_2 +"uploads?path=" +  productBuyer?.PRODUCTFILEPATH
 
         binding.apply {
             Glide.with(this@DetailBuyerActivity)

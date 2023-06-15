@@ -50,7 +50,7 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
 
         fun bind(product: ProductItem) {
             tvProductName.text = product.PRODUCTNAME
-            tvProductPrice.text = product.PRODUCTPRICE.toString()
+            tvProductPrice.text = "Rp " + product.PRODUCTPRICE.toString()
 
             val imageUrl = Constant.BASE_URL_2 + "uploads?path=" + product.PRODUCTFILEPATH
             Log.d(TAG, "bind: " + imageUrl)

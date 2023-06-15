@@ -91,7 +91,7 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
-        val imageUrl = Constant.BASE_URL_2 + product?.PRODUCTFILEPATH
+        val imageUrl = Constant.BASE_URL_2 +"uploads?path=" +  product?.PRODUCTFILEPATH
 
 
         if (fromHomeSeller) {
