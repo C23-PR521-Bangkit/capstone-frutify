@@ -1,5 +1,6 @@
 package com.example.frutify.ui.dashboard.profile
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -37,6 +38,8 @@ class ProfileFragment : Fragment() {
 
         sharePref = SharePref(requireContext())
 
+        binding.profileName.setText(sharePref.getFullname)
+        binding.profileEmail.setText(sharePref.getEmail)
         binding.etEmail.setText(sharePref.getEmail)
         binding.etPhone.setText(sharePref.getPhone)
         binding.etFullname.setText(sharePref.getFullname)
@@ -45,6 +48,7 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

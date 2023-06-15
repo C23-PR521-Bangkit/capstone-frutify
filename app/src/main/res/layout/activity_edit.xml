@@ -114,6 +114,7 @@
                 android:paddingVertical="13dp"
                 android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/tv_fruit"
+                android:drawableStart="@drawable/baseline_drive_file_rename_outline_24"
                 tools:ignore="UnusedAttribute" />
 
             <!-- TextView desc -->
@@ -131,6 +132,7 @@
             <!-- EditText name -->
             <EditText
                 android:id="@+id/et_desc"
+                android:drawableStart="@drawable/baseline_description_24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -168,6 +170,7 @@
             <!-- EditText price -->
             <EditText
                 android:id="@+id/et_price"
+                android:drawableStart="@drawable/baseline_attach_money_24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

@@ -12,6 +12,44 @@
         android:orientation="vertical"
         android:background="@color/light_gray_100">
 
+        <RelativeLayout
+            android:id="@+id/action_bar_custom"
+            android:layout_width="fill_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_margin="0dp"
+            android:background="@color/primary_blue"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0sp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="FRUTIFY"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="monospace"/>
+
+                <ImageView
+                    android:paddingTop="8sp"
+                    android:visibility="visible"
+                    android:layout_width="50sp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/frutifylogo"
+                    android:id="@+id/ivBack"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
         <!-- custom navbar-->
         <LinearLayout
             android:layout_width="match_parent"

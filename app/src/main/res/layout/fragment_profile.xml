@@ -21,6 +21,50 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_gradient_blue"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/home"
+                    android:src="@drawable/baseline_person_outline_24" />
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    tools:text="John Doe" />
+
+                <TextView
+                    android:id="@+id/profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="20dp"
+                    tools:text="someone@email.com" />
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
@@ -49,6 +93,7 @@
                 android:lineHeight="20dp"
                 android:padding="8dp"
                 android:textSize="20sp"
+                android:drawableStart="@drawable/baseline_email_24"
                 tools:ignore="UnusedAttribute" />
 
             <TextView
@@ -76,6 +121,7 @@
                 android:padding="8dp"
                 android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/tv_fruit"
+                android:drawableStart="@drawable/baseline_phone_24"
                 tools:ignore="UnusedAttribute" />
 
             <TextView
@@ -102,7 +148,8 @@
                 android:lineHeight="20dp"
                 android:padding="8dp"
                 android:textSize="20sp"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                android:drawableStart="@drawable/baseline_drive_file_rename_outline_24"/>
 
             <TextView
                 android:id="@+id/tv_address"
@@ -124,6 +171,7 @@
                 android:layout_marginEnd="20dp"
                 android:autofillHints=""
                 android:background="@drawable/bg_form_01"
+                android:drawableStart="@drawable/ic_home"
                 android:gravity="start"
                 android:lineHeight="20dp"
                 android:padding="8dp"
@@ -152,6 +200,7 @@
                 android:background="@drawable/bg_form_01"
                 android:gravity="start"
                 android:lineHeight="20dp"
+                android:drawableStart="@drawable/baseline_password_24"
                 android:padding="8dp"
                 android:textSize="20sp"
                 tools:ignore="UnusedAttribute" />
@@ -180,7 +229,8 @@
                 android:lineHeight="20dp"
                 android:padding="8dp"
                 android:textSize="20sp"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                android:drawableStart="@drawable/baseline_lock_24"/>
 
             <Button
                 android:id="@+id/btn_save_profile"
