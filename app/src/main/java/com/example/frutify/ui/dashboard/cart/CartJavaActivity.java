@@ -46,6 +46,7 @@ public class CartJavaActivity extends AppCompatActivity {
     private SharePref sharePref;
 
     private LinearLayout divContainer;
+    private TextView tvTotal;
 
     private JSONArray data;
 
@@ -55,6 +56,7 @@ public class CartJavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         divContainer = findViewById(R.id.divContainer);
+        tvTotal = findViewById(R.id.tvTotal);
 
         sharePref = new SharePref(CartJavaActivity.this);
 
@@ -142,6 +144,7 @@ public class CartJavaActivity extends AppCompatActivity {
             }
 
             tvName.setText(aMenu.optString("USER_FULLNAME"));
+            tvTotal.setText("Rp " + aMenu.optInt("TOTAL"));
 
             divContainer.addView(rowView);
         }
@@ -149,10 +152,12 @@ public class CartJavaActivity extends AppCompatActivity {
 
 
     public void addItemView(JSONObject item, LinearLayout divContainerProduct){
+        divContainerProduct.removeAllViews();
+
         LayoutInflater factory = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = factory.inflate(R.layout.item_row_cart, divContainer, false);
 
-        ImageView ivImage = rowView.findViewById(R.id.tvName);
+        ImageView ivImage = rowView.findViewById(R.id.ivImage);
         TextView tvName = rowView.findViewById(R.id.tvName);
         TextView tvFruitType = rowView.findViewById(R.id.tvFruitType);
         TextView tvQuality = rowView.findViewById(R.id.tvQuality);
