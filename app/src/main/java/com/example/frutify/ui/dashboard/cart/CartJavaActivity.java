@@ -139,6 +139,7 @@ public class CartJavaActivity extends AppCompatActivity {
             LinearLayout divContainerProduct = rowView.findViewById(R.id.divContainerProduct);
 
             JSONArray items = aMenu.optJSONArray("ITEM");
+            divContainerProduct.removeAllViews();
             for(int i2 = 0; i2 < items.length(); i2++){
                 addItemView(items.optJSONObject(i2), divContainerProduct);
             }
@@ -152,7 +153,6 @@ public class CartJavaActivity extends AppCompatActivity {
 
 
     public void addItemView(JSONObject item, LinearLayout divContainerProduct){
-        divContainerProduct.removeAllViews();
 
         LayoutInflater factory = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = factory.inflate(R.layout.item_row_cart, divContainer, false);
