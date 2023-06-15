@@ -1,5 +1,6 @@
 package com.example.frutify.data.network
 
+import com.example.frutify.utils.Helper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,7 +15,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/")
+                .baseUrl(Helper.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

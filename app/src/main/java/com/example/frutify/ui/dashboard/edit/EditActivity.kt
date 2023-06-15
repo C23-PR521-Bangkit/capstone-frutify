@@ -307,7 +307,8 @@ class EditActivity : AppCompatActivity() {
         }
         productViewModel.error.observe(this) { error ->
             // Show error message
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            //bdrl
+            //Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
     }
 

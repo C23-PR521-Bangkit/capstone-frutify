@@ -7,6 +7,8 @@ import android.util.Log
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.frutify.databinding.ActivityMainBinding
+import com.example.frutify.ui.dashboard.cart.CartActivity
+import com.example.frutify.ui.dashboard.cart.CartJavaActivity
 import com.example.frutify.ui.dashboard.edit.EditActivity
 import com.example.frutify.ui.dashboard.home.buyer.HomeBuyerFragment
 import com.example.frutify.ui.dashboard.home.seller.HomeSellerFragment
@@ -19,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharePref: SharePref
 
-    private val DEBUG_TAG = Helper.DEBUG_TAG
-    private val fromBuyer = true
+    private val TAG = Helper.DEBUG_TAG
+    private var sellerMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +40,10 @@ class MainActivity : AppCompatActivity() {
         val homeSellerFragment = HomeSellerFragment()
         val homeBuyerFragment = HomeBuyerFragment()
 
+        sellerMode = sharePref.getUserRoles == "SELLER"
+
         //mengganti fragment roles
-        val defaultFragment = if (sharePref.getUserRoles == "SELLER") {
+        val defaultFragment = if (sellerMode) {
             homeSellerFragment
         } else {
             homeBuyerFragment
@@ -50,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         binding.navbarView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
-                    val selectedFragment = if (sharePref.getUserRoles == "SELLER") {
+                    val selectedFragment = if (sellerMode) {
                         homeSellerFragment
                     } else {
                         homeBuyerFragment
@@ -65,9 +69,15 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        binding.fab.setOnClickListener { startActivity(Intent(this, EditActivity::class.java)) }
 
-        Log.d(DEBUG_TAG, "onCreate: All setup!");
+        Log.d(TAG, "onCreate: " + sellerMode)
+        if(sellerMode){
+            binding.fab.setOnClickListener { startActivity(Intent(this, EditActivity::class.java)) }
+        }else{
+            binding.fab.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_shopping_cart)) // gak bisa
+            binding.fab.setOnClickListener { startActivity(Intent(this, CartJavaActivity::class.java)) }
+        }
+
     }
 
     private fun switchFragment(fragment: Fragment) {
