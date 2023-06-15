@@ -1,21 +1,32 @@
 package com.example.frutify.ui.dashboard.home.buyer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.frutify.MainActivity
 import com.example.frutify.R
 import com.example.frutify.data.model.ProductItemBuyer
+import com.example.frutify.data.viewmodel.CartViewModel
 import com.example.frutify.databinding.ActivityDetailBuyerBinding
 import com.example.frutify.utils.Helper
+import com.example.frutify.utils.SharePref
 
 class DetailBuyerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBuyerBinding
+    private lateinit var cartViewModel: CartViewModel
+    private lateinit var sharePref: SharePref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBuyerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
+        sharePref = SharePref(this)
 
         val productBuyer = intent.getParcelableExtra<ProductItemBuyer>("product")
 
@@ -34,5 +45,16 @@ class DetailBuyerActivity : AppCompatActivity() {
             textDesc.text = productBuyer?.PRODUCTDESCRIPTION
         }
 
+        binding.btnAdd.setOnClickListener {
+            addToCart(sharePref.getUserId, productBuyer?.PRODUCTID!!, 1)
+        }
+
+    }
+
+    fun addToCart(userId: Int, productId: Int, qty: Int){
+        cartViewModel.addToCart(userId, productId, qty)
+        cartViewModel.addCartResult.observe(this) {
+            Toast.makeText(this, it?.MESSAGE, Toast.LENGTH_SHORT).show()
+        }
     }
 }

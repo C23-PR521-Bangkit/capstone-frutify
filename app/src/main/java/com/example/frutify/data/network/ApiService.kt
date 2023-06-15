@@ -87,4 +87,12 @@ interface ApiService {
     fun doImageClasify(
         @Part image: MultipartBody.Part
     ): Call<ImageClasifyResponse>
+
+    @POST("cart/add")
+    @FormUrlEncoded
+    fun addToCart(
+        @Field("user_id") userId: Int,
+        @Field("product_id") productId: Int,
+        @Field("qty") qty: Int
+    ) : Call<RegisterResponse>
 }
