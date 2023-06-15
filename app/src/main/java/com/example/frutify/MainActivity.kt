@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.frutify.databinding.ActivityMainBinding
-import com.example.frutify.ui.dashboard.cart.CartActivity
 import com.example.frutify.ui.dashboard.cart.CartJavaActivity
 import com.example.frutify.ui.dashboard.edit.EditActivity
 import com.example.frutify.ui.dashboard.home.buyer.HomeBuyerFragment

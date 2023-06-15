@@ -76,7 +76,7 @@ public class CartJavaActivity extends AppCompatActivity {
 
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.d("HBB", "onResponse: " + response);
+                    Log.d(TAG, "onResponse: " + response);
                     final String status = response.optString(Helper.RESPONSE_STATUS_FIELD);
                     final String message = response.optString(Helper.RESPONSE_MESSAGE_FIELD);
 
@@ -215,7 +215,7 @@ public class CartJavaActivity extends AppCompatActivity {
                 (Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("HBB", "onResponse: " + response);
+                        Log.d(TAG, "onResponse: " + response);
                         fetch();
                     }
                 }, new Response.ErrorListener() {
