@@ -45,6 +45,9 @@ class HomeBuyerFragment : Fragment() {
         binding.recyclerViewBuyer.adapter = homeBuyerAdapter
 
         productViewModel.getListProductBuyer(binding.etSearch.text.toString())
+        productViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
         productViewModel.productBuyerResult.observe(viewLifecycleOwner) { products ->
             if (products != null) {
                 homeBuyerAdapter.submitList(products)
@@ -68,12 +71,21 @@ class HomeBuyerFragment : Fragment() {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun getProduct(query: String? = null) {
         if (query.isNullOrEmpty()) {
             productViewModel.getListProductBuyer(null)
         } else {
             productViewModel.getListProductBuyer(query)
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object{

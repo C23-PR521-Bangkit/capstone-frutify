@@ -3,7 +3,7 @@ package com.example.frutify.utils;
 public class Helper {
 
     //public static final String BASE_URL = "https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/";
-    public static final String BASE_URL = "https://8f66-2404-8000-1039-1102-b42b-99-e2d6-11b8.ngrok-free.app/";
+    public static final String BASE_URL = "https://2fce-2404-8000-1039-1102-4588-d940-61b9-f4c5.ngrok-free.app/";
     public static final String DEBUG_TAG = "BGKT";
 
 

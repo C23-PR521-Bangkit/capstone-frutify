@@ -145,31 +145,51 @@ class EditActivity : AppCompatActivity() {
         quality = intent.getStringExtra(EXTRA_QUALITY)
 
         binding.btnSave.setOnClickListener {
-            val fruit = fruitIdArray[idFruit]
-            val userId = sharePref.getUserId
-            val name = binding.etName.text.toString().trim()
-            val desc = binding.etDesc.text.toString().trim()
-            val price = binding.etPrice.text.toString().toInt()
-            val unit = "kg"
 
-            addProduct(fruit, userId, name, desc, price, unit, filename!!, quality!!)
+            if (validateFields()) {
+                val fruit = fruitIdArray[idFruit]
+                val userId = sharePref.getUserId
+                val name = binding.etName.text.toString().trim()
+                val desc = binding.etDesc.text.toString().trim()
+                val price = binding.etPrice.text.toString().toInt()
+                val unit = "kg"
+
+                if (filename != null) {
+                    addProduct(fruit, userId, name, desc, price, unit, filename!!, quality!!)
+                } else {
+                    Toast.makeText(this, "Tolong Masukan Gambar", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.btnUpdate.setOnClickListener {
-            val productId = product?.PRODUCTID
-            val fruit = fruitIdArray[idFruit]
-            val userId = sharePref.getUserId
-            val name = binding.etName.text.toString().trim()
-            val desc = binding.etDesc.text.toString().trim()
-            val price = binding.etPrice.text.toString().toInt()
-            val unit = "kg"
-            val filenameUpdate = product?.PRODUCTFILEPATH
-            val qualityUpdate = product?.PRODUCTQUALITY
 
-            val updatedFilename = filename ?: filenameUpdate
-            val updatedQuality = quality ?: qualityUpdate
+            if(validateFields()) {
+                val productId = product?.PRODUCTID
+                val fruit = fruitIdArray[idFruit]
+                val userId = sharePref.getUserId
+                val name = binding.etName.text.toString().trim()
+                val desc = binding.etDesc.text.toString().trim()
+                val price = binding.etPrice.text.toString().toInt()
+                val unit = "kg"
+                val filenameUpdate = product?.PRODUCTFILEPATH
+                val qualityUpdate = product?.PRODUCTQUALITY
 
-            updateProduct(productId!!, fruit, userId, name, desc, price, unit, updatedFilename!!, updatedQuality!!)
+                val updatedFilename = filename ?: filenameUpdate
+                val updatedQuality = quality ?: qualityUpdate
+
+                updateProduct(
+                    productId!!,
+                    fruit,
+                    userId,
+                    name,
+                    desc,
+                    price,
+                    unit,
+                    updatedFilename!!,
+                    updatedQuality!!
+                )
+            }
         }
 
         binding.btnDelete.setOnClickListener {
@@ -313,6 +333,23 @@ class EditActivity : AppCompatActivity() {
             //bdrl
             //Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun validateFields(): Boolean {
+        if ((binding.etName.text?.length ?: 0) <= 0) {
+            binding.etName.error = getString(R.string.errorfield)
+            binding.etName.requestFocus()
+            return false
+        } else if ((binding.etDesc.text?.length ?: 0) <= 0) {
+            binding.etDesc.error = getString(R.string.errorfield)
+            binding.etDesc.requestFocus()
+            return false
+        } else if ((binding.etPrice.text?.length ?: 0) <= 0) {
+            binding.etPrice.error = getString(R.string.errorfield)
+            binding.etPrice.requestFocus()
+            return false
+        }
+        return true
     }
 
     private fun showLoading(isLoading: Boolean) {

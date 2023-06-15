@@ -41,6 +41,9 @@ class HomeSellerFragment : Fragment() {
         binding.recyclerViewSeller.layoutManager = LinearLayoutManager(requireContext())
 
         productViewModel.getListProduct(binding.etSearch.text.toString(), sharePref.getUserId)
+        productViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
         productViewModel.productResult.observe(viewLifecycleOwner) { products ->
             if (products != null) {
                 homeSellerAdapter.submitList(products)
@@ -76,6 +79,10 @@ class HomeSellerFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object{
