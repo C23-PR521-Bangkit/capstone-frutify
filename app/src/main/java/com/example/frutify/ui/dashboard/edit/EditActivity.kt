@@ -13,6 +13,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -25,14 +26,11 @@ import com.example.frutify.R
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.ActivityEditBinding
+import com.example.frutify.ui.dashboard.auth.ChooseRolesActivity
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.ui.dashboard.edit.camera.CameraActivity
-import com.example.frutify.utils.Helper
-import com.example.frutify.utils.SharePref
-import com.example.frutify.utils.Utility
+import com.example.frutify.utils.*
 import com.example.frutify.utils.Utility.rotateBitmap
-import com.example.frutify.utils.rotateFile
-import com.example.frutify.utils.uriToFile
 import java.io.File
 
 class EditActivity : AppCompatActivity() {
@@ -95,7 +93,7 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
-        val imageUrl = Helper.BASE_URL + product?.PRODUCTFILEPATH
+        val imageUrl = Constant.BASE_URL + product?.PRODUCTFILEPATH
 
 
         if (fromHomeSeller) {
@@ -110,6 +108,7 @@ class EditActivity : AppCompatActivity() {
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
+                tvQualityResult.setText(product.PRODUCTQUALITY)
                 Glide.with(this@EditActivity)
                     .load(imageUrl) // Error image if unable to load
                     .into(binding.previewImage)
@@ -126,6 +125,8 @@ class EditActivity : AppCompatActivity() {
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
+                tvQualityResult.setText(product.PRODUCTQUALITY)
+
                 Glide.with(this@EditActivity)
                     .load(imageUrl) // Error image if unable to load
                     .into(binding.previewImage)
@@ -143,7 +144,7 @@ class EditActivity : AppCompatActivity() {
 
         filename = intent.getStringExtra(EXTRA_FILENAME)
         quality = intent.getStringExtra(EXTRA_QUALITY)
-
+        binding.tvQualityResult.setText(quality)
         binding.btnSave.setOnClickListener {
 
             if (validateFields()) {
@@ -153,6 +154,7 @@ class EditActivity : AppCompatActivity() {
                 val desc = binding.etDesc.text.toString().trim()
                 val price = binding.etPrice.text.toString().toInt()
                 val unit = "kg"
+
 
                 if (filename != null) {
                     addProduct(fruit, userId, name, desc, price, unit, filename!!, quality!!)
@@ -193,10 +195,15 @@ class EditActivity : AppCompatActivity() {
         }
 
         binding.btnDelete.setOnClickListener {
-            val product_id = product?.PRODUCTID
-            val userId = sharePref.getUserId
 
-            deleteProduct(product_id!!, userId)
+            val product_id = product?.PRODUCTID
+            val user_id = sharePref.getUserId
+
+            openDeleteDialog(product_id!!, user_id)
+        }
+
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -240,6 +247,7 @@ class EditActivity : AppCompatActivity() {
             val dataQuality = data?.getStringExtra(EXTRA_QUALITY)
             dataQuality.let {
                 quality = it
+                binding.tvQualityResult.setText(quality)
             }
             val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 it.data?.getSerializableExtra("picture", File::class.java)
@@ -350,6 +358,19 @@ class EditActivity : AppCompatActivity() {
             return false
         }
         return true
+    }
+
+    private fun openDeleteDialog(productId: Int, userId: Int) {
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Confirm Delete")
+            ?.setPositiveButton("yes") { _, _ ->
+
+
+                deleteProduct(productId!!, userId)
+            }
+            ?.setNegativeButton("no", null)
+        val alert = alertDialog.create()
+        alert.show()
     }
 
     private fun showLoading(isLoading: Boolean) {

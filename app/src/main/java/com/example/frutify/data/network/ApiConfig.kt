@@ -1,5 +1,6 @@
 package com.example.frutify.data.network
 
+import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Helper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,7 +16,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(Helper.BASE_URL)
+                .baseUrl(Constant.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

@@ -16,6 +16,7 @@ import com.example.frutify.data.viewmodel.AuthViewModel
 import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.FragmentHomeSellerBinding
 import com.example.frutify.databinding.FragmentProfileBinding
+import com.example.frutify.ui.dashboard.auth.ChooseRolesActivity
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.utils.Constant
 import com.example.frutify.utils.SharePref
@@ -50,7 +51,17 @@ class ProfileFragment : Fragment() {
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         sharePref = SharePref(requireContext())
 
+        authViewModel.error.observe(viewLifecycleOwner) { error ->
+            // Show error message
+            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+        }
+
+        authViewModel.updateResult.observe(viewLifecycleOwner){ result ->
+            Toast.makeText(requireContext(), result?.MESSAGE, Toast.LENGTH_SHORT).show()
+        }
+
         binding.btnSaveProfile.setOnClickListener {
+            if (validate())
             updateUser(
                 binding.etEmail.text.toString(),
                 binding.etOldPassword.text.toString(),
@@ -76,23 +87,18 @@ class ProfileFragment : Fragment() {
         newPassword: String? = null
     ){
         authViewModel.updateUser(email, password, phone, fullname, address, newPassword)
-        authViewModel.updateResult.observe(viewLifecycleOwner){ result ->
-            Toast.makeText(requireContext(), result?.MESSAGE, Toast.LENGTH_SHORT).show()
-        }
+
         authViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-        authViewModel.error.observe(viewLifecycleOwner) { error ->
-            // Show error message
-            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
-            binding.etEmail.setText(email)
-            binding.etPhone.setText(phone)
-            binding.etFullname.setText(fullname)
-            binding.etAddress.setText(address)
-            binding.etNewPassword.setText(newPassword)
+        binding.etEmail.setText(email)
+        binding.etPhone.setText(phone)
+        binding.etFullname.setText(fullname)
+        binding.etAddress.setText(address)
+        binding.etNewPassword.setText(newPassword)
 
-            saveUpdatedValues(email, phone, fullname, address, newPassword)
-        }
+        saveUpdatedValues(email, phone, fullname, address, newPassword)
+
 
     }
 
@@ -115,7 +121,7 @@ class ProfileFragment : Fragment() {
         alertDialog.setTitle("Confirm Logout")
             ?.setPositiveButton("yes") { _, _ ->
                 sharePref.clearPreferences()
-                val intent = Intent(requireContext(), LoginActivity::class.java)
+                val intent = Intent(requireContext(), ChooseRolesActivity::class.java)
                 intent.flags =
                     Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
@@ -123,6 +129,39 @@ class ProfileFragment : Fragment() {
             ?.setNegativeButton("no", null)
         val alert = alertDialog.create()
         alert.show()
+    }
+
+    private fun validate() : Boolean{
+        if ((binding.etEmail.text?.length ?: 0) <= 0) {
+            binding.etEmail.error = getString(R.string.invalid_email)
+            binding.etEmail.requestFocus()
+            return false
+        } else if ((binding.etOldPassword.text?.length ?: 0) <= 0) {
+            binding.etOldPassword.error = getString(R.string.invalid_password)
+            binding.etOldPassword.requestFocus()
+            return false
+        } else if ((binding.etPhone.text?.length ?: 0) <= 0) {
+            binding.etPhone.error = getString(R.string.wrong_number)
+            binding.etPhone.requestFocus()
+            return false
+        }else if ((binding.etFullname.text?.length ?: 0) <= 0) {
+            binding.etFullname.error = getString(R.string.wrong_number)
+            binding.etFullname.requestFocus()
+            return false
+        }else if ((binding.etAddress.text?.length ?: 0) <= 0) {
+            binding.etAddress.error = getString(R.string.wrong_number)
+            binding.etAddress.requestFocus()
+            return false
+        }
+        return true
+
+//        if ((binding.etEmail.error?.length ?: 0) > 0) {
+//            binding.etEmail.requestFocus()
+//        } else if ((binding.etOldPassword.error?.length ?: 0) > 0) {
+//            binding.etOldPassword.requestFocus()
+//        }else if ((binding.etPhone.error?.length ?: 0) > 0){
+//            binding.etPhone.requestFocus()
+//        } else {
     }
 
     private fun showLoading(isLoading: Boolean) {

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.frutify.R
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.ui.dashboard.edit.EditActivity
+import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Helper
 
 class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>() {
@@ -49,7 +50,7 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
             tvProductName.text = product.PRODUCTNAME
             tvProductPrice.text = product.PRODUCTPRICE.toString()
 
-            val imageUrl = Helper.BASE_URL + product.PRODUCTFILEPATH
+            val imageUrl = Constant.BASE_URL + product.PRODUCTFILEPATH
 
             Glide.with(itemView)
                 .load(imageUrl) // Error image if unable to load
