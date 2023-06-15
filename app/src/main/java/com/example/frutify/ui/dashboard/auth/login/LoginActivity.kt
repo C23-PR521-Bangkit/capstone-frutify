@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
         sharePref = SharePref(this)
         disableBtnLogin()
 
+        authViewModel.error.observe(this) { error ->
+            if (error != null) {
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.btnLogin.setOnClickListener {
 
             if ((binding.edEmail.text?.length ?: 0) <= 0) {
@@ -59,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
     private fun login(email: String, password: String) {
 
         authViewModel.login(email, password)
-        authViewModel.isLoading.observe(this){ showLoading(it) }
+        authViewModel.isLoading.observe(this) { showLoading(it) }
 
         authViewModel.loginResult.observe(this) { login ->
             if (login?.STATUS == "SUCCESS") {
@@ -100,16 +106,11 @@ class LoginActivity : AppCompatActivity() {
                 }
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
-            } else {
-                Toast.makeText(this, login?.MESSAGE, Toast.LENGTH_SHORT).show()
             }
         }
-
-        authViewModel.error.observe(this) { error ->
-            //bdrl
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-        }
-
+//        authViewModel.error.observe(this) { error ->
+//            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+//        }
     }
 
     private fun disableBtnLogin() {

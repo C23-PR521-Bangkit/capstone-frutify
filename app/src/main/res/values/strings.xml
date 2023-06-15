@@ -14,7 +14,7 @@
     <string name="desc">Description</string>
     <string name="cost">Price</string>
     <string name="content_desc_scan">Scan Image</string>
-    <string name="quality">Quality</string>
+    <string name="quality">Quality : </string>
     <string name="email">Email</string>
     <string name="phone">Phone</string>
     <string name="fullname">Fullname</string>
@@ -53,4 +53,5 @@
     <string name="add_to_cart">Add To Cart</string>
     <string name="errorfield">Field Harus Diisi</string>
     <string name="LOGOUT">LOGOUT</string>
+    <string name="good">Good</string>
 </resources>

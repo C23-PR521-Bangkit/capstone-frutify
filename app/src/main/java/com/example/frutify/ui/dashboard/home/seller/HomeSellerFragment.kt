@@ -40,7 +40,7 @@ class HomeSellerFragment : Fragment() {
         binding.recyclerViewSeller.adapter = homeSellerAdapter
         binding.recyclerViewSeller.layoutManager = LinearLayoutManager(requireContext())
 
-        productViewModel.getListProduct(binding.etSearch.text.toString(), sharePref.getUserId)
+        showProduct()
         productViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
@@ -68,6 +68,11 @@ class HomeSellerFragment : Fragment() {
         }
     }
 
+    private fun showProduct(){
+        productViewModel.getListProduct(binding.etSearch.text.toString(), sharePref.getUserId)
+
+    }
+
     private fun getProduct(query: String? = null, userId: Int) {
         if (query.isNullOrEmpty()) {
             productViewModel.getListProduct(null, userId)
@@ -82,6 +87,7 @@ class HomeSellerFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
+//        binding.swipeRefreshLayout.isRefreshing = isLoading
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 

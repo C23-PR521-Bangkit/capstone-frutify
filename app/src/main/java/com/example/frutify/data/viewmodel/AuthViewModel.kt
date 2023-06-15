@@ -31,21 +31,23 @@ class AuthViewModel : ViewModel() {
 
 
     fun login(email: String, password: String) {
+
         _isLoading.value = true
+        error.postValue(null)
+
         val client = ApiConfig.getApiService().login(email, password)
         client.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                if (response.isSuccessful) {
-                    val loginResponse = response.body()
-                    if (loginResponse?.STATUS == "SUCCESS") {
-                        _loginResult.postValue(loginResponse)
-                         // Clear the error value
-                    }else {
-                        error.postValue("Login failed. Please check your email and/or password.")
-                    }
 
-                    _isLoading.value = false
+                val loginResponse = response.body()
+                if (loginResponse?.STATUS == "SUCCESS") {
+                    _loginResult.postValue(loginResponse)
+                } else {
+                    error.postValue("Login failed. Please check your email and/or password.")
                 }
+
+                _isLoading.value = false
+
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -105,7 +107,6 @@ class AuthViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val updateResponse = response.body()
                     _updateResult.postValue(updateResponse)
-                    error.postValue(null) // Clear the error value
                     _isLoading.value = false
                 }
             }

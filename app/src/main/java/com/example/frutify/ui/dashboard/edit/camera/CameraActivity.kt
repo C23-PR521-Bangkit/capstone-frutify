@@ -176,6 +176,7 @@ class CameraActivity : AppCompatActivity() {
                     intent.putExtra(EditActivity.EXTRA_QUALITY, quality)
                     intent.putExtra("pictureUri", myFile)
                     startActivity(intent)
+                    finish()
                 }
             }
         }
