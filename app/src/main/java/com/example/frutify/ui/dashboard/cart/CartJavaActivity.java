@@ -1,6 +1,7 @@
 package com.example.frutify.ui.dashboard.cart;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,8 +50,11 @@ public class CartJavaActivity extends AppCompatActivity {
 
     private LinearLayout divContainer;
     private TextView tvTotal;
+    private LinearLayout divLanjut;
 
     private JSONArray data;
+    private JSONObject storeOrdered;
+    private String storeSelected = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +63,20 @@ public class CartJavaActivity extends AppCompatActivity {
 
         divContainer = findViewById(R.id.divContainer);
         tvTotal = findViewById(R.id.tvTotal);
+        divLanjut = findViewById(R.id.divLanjut);
 
         sharePref = new SharePref(CartJavaActivity.this);
+
+        divLanjut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(storeSelected.equals("")){
+                    Toast.makeText(CartJavaActivity.this, "Mohon pilih seller yang akan dipesan", Toast.LENGTH_SHORT).show();
+                }else{
+                    String buildMsg = "Halo " + storeOrdered + ", saya ingin memesan";
+                }
+            }
+        });
 
         fetch();
     }
@@ -130,13 +148,16 @@ public class CartJavaActivity extends AppCompatActivity {
         divContainer.removeAllViews();
         for(int i=0; i < data.length(); i++) {
             JSONObject aMenu = data.optJSONObject(i);
-            if(aMenu == null)    continue;
+            if(aMenu == null || aMenu.optString("TOTAL").equals("0"))    continue;
 
             LayoutInflater factory = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView = factory.inflate(R.layout.item_row_seller, divContainer, false);
 
             TextView tvName = rowView.findViewById(R.id.tvName);
             LinearLayout divContainerProduct = rowView.findViewById(R.id.divContainerProduct);
+            Button btnFlagActive = rowView.findViewById(R.id.btnFlagActive);
+
+            String userId = aMenu.optString("USER_ID");
 
             JSONArray items = aMenu.optJSONArray("ITEM");
             divContainerProduct.removeAllViews();
@@ -146,6 +167,19 @@ public class CartJavaActivity extends AppCompatActivity {
 
             tvName.setText(aMenu.optString("USER_FULLNAME"));
             tvTotal.setText("Rp " + aMenu.optInt("TOTAL"));
+            if(storeSelected.equals(userId)){
+                btnFlagActive.setVisibility(View.VISIBLE);
+            }else{
+                btnFlagActive.setVisibility(View.INVISIBLE);
+            }
+
+            rowView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectStore(userId, aMenu);
+                    fetch();
+                }
+            });
 
             divContainer.addView(rowView);
         }
@@ -247,6 +281,16 @@ public class CartJavaActivity extends AppCompatActivity {
         };
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(jsonObjectRequest);
+    }
+
+
+    public void selectStore(String userId, JSONObject aMenu){
+        if(storeSelected.equals(userId)){
+            storeSelected = "";
+        }else{
+            storeSelected = userId;
+            storeOrdered = aMenu;
+        }
     }
 
 }

@@ -2,7 +2,8 @@ package com.example.frutify.utils
 
 class Constant {
     companion object {
-        val BASE_URL = "https://411c-2404-8000-1039-1102-4588-d940-61b9-f4c5.ngrok-free.app/"
+        //val BASE_URL = "https://411c-2404-8000-1039-1102-4588-d940-61b9-f4c5.ngrok-free.app/"
+        val BASE_URL = "http://192.168.1.28:888/"
         val ROLES = "ROLES"
         val PREF_IS_LOGIN = "PREF_IS_LOGIN"
         val PREF_EMAIL = "PREF_EMAIL"
