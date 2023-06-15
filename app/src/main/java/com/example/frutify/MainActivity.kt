@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         if(sellerMode){
             binding.fab.setOnClickListener { startActivity(Intent(this, EditActivity::class.java)) }
         }else{
-            binding.fab.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_shopping_cart)) // gak bisa
+            binding.fab.setImageResource(R.drawable.ic_shopping_cart) // gak bisa
             binding.fab.setOnClickListener { startActivity(Intent(this, CartJavaActivity::class.java)) }
         }
 
