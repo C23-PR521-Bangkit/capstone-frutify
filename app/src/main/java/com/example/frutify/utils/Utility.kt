@@ -101,11 +101,6 @@ private fun createCustomTempFile(context: Context): File {
     return File.createTempFile(currentTimestamp, ".jpg", storageDir)
 }
 
-fun File.toImageBodyPart(): MultipartBody.Part {
-    val requestFile = this.asRequestBody("image/*".toMediaTypeOrNull())
-    return MultipartBody.Part.createFormData("image", name, requestFile)
-}
-
 @SuppressLint("ConstantLocale")
 val currentTimestamp: String = SimpleDateFormat(
     "ddMMyyHHmmssSS",

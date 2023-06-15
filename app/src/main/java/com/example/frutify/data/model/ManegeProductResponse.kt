@@ -1,6 +1,6 @@
 package com.example.frutify.data.model
 
-import com.example.frutify.utils.Constant.Companion.name
+
 import com.google.gson.annotations.SerializedName
 
 data class ManegeProductResponse(

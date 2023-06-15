@@ -32,8 +32,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun checkLogin(){
-        token = "bearer ${sharePref.getToken}"
-        if (sharePref.isLogin == false) {
+        if (!sharePref.isLogin) {
             startActivity(Intent(this, ChooseRolesActivity::class.java))
             finish()
         }else{

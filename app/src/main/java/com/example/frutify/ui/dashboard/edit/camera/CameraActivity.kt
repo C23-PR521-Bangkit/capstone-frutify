@@ -28,6 +28,7 @@ import com.example.frutify.R
 import com.example.frutify.data.viewmodel.ClasifyViewModel
 import com.example.frutify.databinding.ActivityCameraBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
+import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Utility
 import com.example.frutify.utils.uriToFile
 import java.io.FileOutputStream
@@ -131,8 +132,8 @@ class CameraActivity : AppCompatActivity() {
                     rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
                     outputStream.close()
 
-                    clasifyViewModel.clasifyImage(rotatedFile)
-                    clasifyViewModel.imageClasifyResult.observe(this@CameraActivity) { imageClasifyResponse ->
+                    clasifyViewModel.predictImage(Constant.BASE_URL_2 ,rotatedFile)
+                    clasifyViewModel.imagePredictResult.observe(this@CameraActivity) { imageClasifyResponse ->
                         val filename = imageClasifyResponse?.PAYLOAD?.filename.toString()
                         val quality = imageClasifyResponse?.PAYLOAD?.quality.toString()
                         val intentRes = Intent(this@CameraActivity, EditActivity::class.java)
@@ -167,8 +168,8 @@ class CameraActivity : AppCompatActivity() {
             val selectedImageUri = result.data?.data as Uri
             selectedImageUri.let { uri ->
                 val myFile = uriToFile(uri, this)
-                clasifyViewModel.clasifyImage(myFile)
-                clasifyViewModel.imageClasifyResult.observe(this){
+                clasifyViewModel.predictImage(Constant.BASE_URL_2 ,myFile)
+                clasifyViewModel.imagePredictResult.observe(this){
                     val filename = it?.PAYLOAD?.filename.toString()
                     val quality = it?.PAYLOAD?.quality.toString()
                     val intent = Intent(this, EditActivity::class.java)

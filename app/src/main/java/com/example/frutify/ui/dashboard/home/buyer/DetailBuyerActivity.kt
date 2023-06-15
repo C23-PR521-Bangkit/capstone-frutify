@@ -35,7 +35,8 @@ class DetailBuyerActivity : AppCompatActivity() {
 
         binding.apply {
             Glide.with(this@DetailBuyerActivity)
-                .load(imageUrl) // Error image if unable to load
+                .load(imageUrl)
+                .error(R.drawable.apel)
                 .into(imageFruit)
             tvPriceBuyer.text = "Rp " + productBuyer?.PRODUCTPRICE.toString()
             textFruitType.text = productBuyer?.FRUITNAME

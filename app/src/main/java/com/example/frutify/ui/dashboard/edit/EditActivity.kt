@@ -59,8 +59,6 @@ class EditActivity : AppCompatActivity() {
             )
         }
 
-//        binding.previewImage.setOnClickListener { startCameraX() }
-
         // Dropdown
         val spinnerFruit: Spinner = binding.etFruit
         // Item Dropdown
@@ -93,7 +91,7 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
-        val imageUrl = Constant.BASE_URL + product?.PRODUCTFILEPATH
+        val imageUrl = Constant.BASE_URL_2 + product?.PRODUCTFILEPATH
 
 
         if (fromHomeSeller) {
@@ -102,15 +100,14 @@ class EditActivity : AppCompatActivity() {
                 btnSave.visibility = View.GONE
                 btnDelete.visibility = View.GONE
 
-//                val imageUrl = "https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/uploads?path=" + product?.PRODUCTFILEPATH
-
                 etFruit.setSelection(position)
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
                 tvQualityResult.setText(product.PRODUCTQUALITY)
                 Glide.with(this@EditActivity)
-                    .load(imageUrl) // Error image if unable to load
+                    .load(imageUrl)
+                    .error(R.drawable.apel)
                     .into(binding.previewImage)
 
             }
@@ -128,13 +125,13 @@ class EditActivity : AppCompatActivity() {
                 tvQualityResult.setText(product.PRODUCTQUALITY)
 
                 Glide.with(this@EditActivity)
-                    .load(imageUrl) // Error image if unable to load
+                    .load(imageUrl)
+                    .error(R.drawable.apel)
                     .into(binding.previewImage)
             }
         } else {
             binding.btnSave.visibility = View.VISIBLE
         }
-
 
         //receive file from intent galery
         val myFile = intent.getSerializableExtra("pictureUri") as? File

@@ -13,7 +13,6 @@ import com.example.frutify.R
 import com.example.frutify.data.viewmodel.AuthViewModel
 import com.example.frutify.databinding.ActivityRegisterBinding
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
-import com.example.frutify.utils.Constant.Companion.name
 import com.example.frutify.utils.SharePref
 
 class RegisterActivity : AppCompatActivity() {

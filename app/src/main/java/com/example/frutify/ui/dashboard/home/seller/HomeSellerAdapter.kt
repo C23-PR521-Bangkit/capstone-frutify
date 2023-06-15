@@ -50,12 +50,12 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
             tvProductName.text = product.PRODUCTNAME
             tvProductPrice.text = product.PRODUCTPRICE.toString()
 
-            val imageUrl = Constant.BASE_URL + product.PRODUCTFILEPATH
+            val imageUrl = Constant.BASE_URL_2 + product.PRODUCTFILEPATH
 
             Glide.with(itemView)
-                .load(imageUrl) // Error image if unable to load
+                .load(imageUrl)
+                .error(R.drawable.apel)
                 .into(imgProduct)
-            // Implementasikan logika lainnya sesuai kebutuhan Anda
 
             itemView.setOnClickListener {
                 listener.onProductClick(product)
@@ -63,7 +63,6 @@ class HomeSellerAdapter : RecyclerView.Adapter<HomeSellerAdapter.ListViewHolder>
             btnDelete.setOnClickListener {
                 val context = itemView.context
                 val intent = Intent(context, EditActivity::class.java)
-                // Kirim data produk yang ingin diedit ke EditActivity
                 intent.putExtra("product", product)
                 intent.putExtra("from_btn_delete", true)
                 context.startActivity(intent)

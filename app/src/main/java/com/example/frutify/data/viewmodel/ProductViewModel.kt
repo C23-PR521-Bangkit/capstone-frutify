@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.frutify.data.model.*
 import com.example.frutify.data.network.ApiConfig
-import com.example.frutify.utils.Constant.Companion.name
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

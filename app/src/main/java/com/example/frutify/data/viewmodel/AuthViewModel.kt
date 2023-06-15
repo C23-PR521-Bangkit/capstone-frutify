@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.example.frutify.data.model.LoginResponse
 import com.example.frutify.data.model.RegisterResponse
 import com.example.frutify.data.network.ApiConfig
-import com.example.frutify.utils.Constant.Companion.name
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

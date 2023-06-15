@@ -11,6 +11,7 @@ import com.example.frutify.R
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.model.ProductItemBuyer
 import com.example.frutify.ui.dashboard.home.seller.HomeSellerAdapter
+import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Helper
 import org.w3c.dom.Text
 
@@ -58,10 +59,11 @@ class HomeBuyerAdapter : RecyclerView.Adapter<HomeBuyerAdapter.ListViewHolder>()
         }
 
         fun bind(product: ProductItemBuyer) {
-            val imageUrl = "https://220d-2404-8000-1039-1102-3dc4-50ff-6ea8-5664.ngrok-free.app/" + product.PRODUCTFILEPATH
+            val imageUrl = Constant.BASE_URL_2 + product.PRODUCTFILEPATH
 
             Glide.with(itemView)
                 .load(imageUrl)
+                .error(R.drawable.apel)
                 .into(imgProduct)
 
             tvProductName.text = product.PRODUCTNAME

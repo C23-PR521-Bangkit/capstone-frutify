@@ -108,9 +108,6 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         }
-//        authViewModel.error.observe(this) { error ->
-//            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-//        }
     }
 
     private fun disableBtnLogin() {

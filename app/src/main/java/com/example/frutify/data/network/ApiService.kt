@@ -83,10 +83,10 @@ interface ApiService {
     ) : Call<RegisterResponse>
 
     @Multipart
-    @POST("fruit/classify")
-    fun doImageClasify(
+    @POST("predict")
+    fun doImagePredict(
         @Part image: MultipartBody.Part
-    ): Call<ImageClasifyResponse>
+    ): Call<PredictResponse>
 
     @POST("cart/add")
     @FormUrlEncoded

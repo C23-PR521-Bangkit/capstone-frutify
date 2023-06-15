@@ -158,14 +158,6 @@ class ProfileFragment : Fragment() {
             return false
         }
         return true
-
-//        if ((binding.etEmail.error?.length ?: 0) > 0) {
-//            binding.etEmail.requestFocus()
-//        } else if ((binding.etOldPassword.error?.length ?: 0) > 0) {
-//            binding.etOldPassword.requestFocus()
-//        }else if ((binding.etPhone.error?.length ?: 0) > 0){
-//            binding.etPhone.requestFocus()
-//        } else {
     }
 
     private fun showLoading(isLoading: Boolean) {

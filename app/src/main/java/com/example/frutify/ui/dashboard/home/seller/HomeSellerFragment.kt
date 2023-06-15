@@ -53,8 +53,6 @@ class HomeSellerFragment : Fragment() {
         homeSellerAdapter.setOnProductClickListener(object : HomeSellerAdapter.OnProductClickListener {
             override fun onProductClick(product: ProductItem) {
                 val intent = Intent(requireContext(), EditActivity::class.java)
-//                intent.putExtra("productName", product.PRODUCTNAME)
-//                intent.putExtra("productPrice", product.PRODUCTPRICE)
                 intent.putExtra("product", product)
                 intent.putExtra("from_home_seller", true)
                 startActivityForResult(intent, EDIT_ACTIVITY_REQUEST_CODE)
@@ -87,7 +85,6 @@ class HomeSellerFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-//        binding.swipeRefreshLayout.isRefreshing = isLoading
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
