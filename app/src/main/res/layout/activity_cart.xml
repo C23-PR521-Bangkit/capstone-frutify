@@ -8,108 +8,153 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="100"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-        <ScrollView
-            android:id="@+id/divScroll"
+        <RelativeLayout
+            android:id="@+id/divHeader"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="85"
-            >
+            android:layout_height="?attr/actionBarSize"
+            android:layout_margin="0dp"
+            android:background="@color/primary_blue"
+            android:gravity="center_vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/divContainer"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:orientation="vertical"
-                    >
-                    <include layout="@layout/item_row_seller"/>
-                    <include layout="@layout/item_row_seller"/>
+                    android:layout_marginStart="15dp"
+                    android:paddingBottom="2dp"
+                    android:src="@drawable/ic_left_back"
+                    app:tint="@color/white" />
 
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/cart"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
-        </ScrollView>
+
+        </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/divCart"
-            android:layout_weight="15"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom">
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:orientation="vertical">
 
-            <RelativeLayout
+            <ScrollView
+                android:id="@+id/divScroll"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/bgGrey"
-                android:paddingHorizontal="13dp"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:textStyle="bold"
-                    android:id="@+id/labelTop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:text="Ringkasan Pesanan"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/labelTotalHarga"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/labelTop"
-                    android:layout_marginTop="4dp"
-                    android:text="Total Semua"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tvTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/labelTotalHarga"
-                    android:layout_alignParentEnd="true"
-                    android:text="Rp. 0,00"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                android:layout_height="0dp"
+                android:layout_weight="85"
+                >
 
                 <LinearLayout
-                    android:id="@+id/divLanjut"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/labelTotalHarga"
-                    android:layout_marginTop="15dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/bg_rectangle_19"
-                    android:text="Beli Sekarang"
-                    android:gravity="center"
-                    android:textColor="@color/white">
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="5dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/divContainer"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="32dp"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:text="PESAN SEKARANG"/>
+                        android:layout_marginTop="3dp"
+                        android:orientation="vertical"
+                        >
+                        <include layout="@layout/item_row_seller"/>
+                        <include layout="@layout/item_row_seller"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
+            </ScrollView>
 
-            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/divCart"
+                android:layout_weight="15"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bgGrey"
+                    android:paddingHorizontal="13dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/labelTop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:text="Ringkasan Pesanan"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/labelTotalHarga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/labelTop"
+                        android:layout_marginTop="4dp"
+                        android:text="Total Semua"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/labelTotalHarga"
+                        android:layout_alignParentEnd="true"
+                        android:text="Rp. 0,00"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/divLanjut"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/labelTotalHarga"
+                        android:layout_marginTop="15dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/bg_rectangle_19"
+                        android:text="Beli Sekarang"
+                        android:gravity="center"
+                        android:textColor="@color/white">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="32dp"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:text="PESAN SEKARANG"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
