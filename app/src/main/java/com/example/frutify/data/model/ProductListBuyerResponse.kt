@@ -1,6 +1,8 @@
 package com.example.frutify.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class ProductListBuyerResponse(
 
@@ -17,6 +19,7 @@ data class ProductListBuyerResponse(
 	val PAYLOAD: PayloadBuyer? = null
 )
 
+@Parcelize
 data class ProductItemBuyer(
 
 	@field:SerializedName("PRODUCT_FILE_PATH")
@@ -72,7 +75,7 @@ data class ProductItemBuyer(
 
 	@field:SerializedName("USER_FULLNAME")
 	val USERFULLNAME: String? = null
-)
+) : Parcelable
 
 data class PayloadBuyer(
 

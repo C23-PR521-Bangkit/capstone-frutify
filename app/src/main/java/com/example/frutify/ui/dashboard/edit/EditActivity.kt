@@ -27,6 +27,7 @@ import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.ActivityEditBinding
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.ui.dashboard.edit.camera.CameraActivity
+import com.example.frutify.utils.Helper
 import com.example.frutify.utils.SharePref
 import com.example.frutify.utils.Utility
 import com.example.frutify.utils.Utility.rotateBitmap
@@ -94,6 +95,9 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
+        val imageUrl = Helper.BASE_URL + product?.PRODUCTFILEPATH
+
+
         if (fromHomeSeller) {
             binding.apply {
                 btnUpdate.visibility = View.VISIBLE
@@ -106,9 +110,9 @@ class EditActivity : AppCompatActivity() {
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
-//                Glide.with(this@EditActivity)
-//                    .load(imageUrl) // Error image if unable to load
-//                    .into(binding.previewImage)
+                Glide.with(this@EditActivity)
+                    .load(imageUrl) // Error image if unable to load
+                    .into(binding.previewImage)
 
             }
         } else if (fromBtnDelete) {
@@ -117,7 +121,6 @@ class EditActivity : AppCompatActivity() {
                 btnSave.visibility = View.GONE
                 btnDelete.visibility = View.VISIBLE
 
-                val imageUrl = "https://5734-2404-8000-1039-1102-c4ca-e336-abc6-cb1.ngrok-free.app/uploads?path=" + product?.PRODUCTFILEPATH
 
                 etFruit.setSelection(position)
                 etName.setText(product?.PRODUCTNAME)
