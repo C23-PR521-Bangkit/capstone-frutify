@@ -68,7 +68,7 @@ public class CartJavaActivity extends AppCompatActivity {
                     new AlertDialog.Builder(CartJavaActivity.this)
                         .setTitle("KONFIRMASI PESANAN")
                         .setMessage("Pesanan akan diteruskan ke WhatsApp penjual dan item akan dihapus dari keranjang")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 String buildMsg = "Halo " + storeOrdered.optString("USER_FULLNAME") + ", saya ingin memesan:";
                                 JSONArray items = storeOrdered.optJSONArray("ITEM");
@@ -87,7 +87,7 @@ public class CartJavaActivity extends AppCompatActivity {
                                 recreate();
                             }
                         })
-                        .setNegativeButton(android.R.string.no, null)
+                        .setNegativeButton("NO", null)
                         .show();
                 }
             }
@@ -158,7 +158,7 @@ public class CartJavaActivity extends AppCompatActivity {
     private void setupMenu(){
         if(data.length() == 0){
             Toast.makeText(CartJavaActivity.this, "Cart kosong", Toast.LENGTH_SHORT).show();
-            
+
         }
 
         divContainer.removeAllViews();

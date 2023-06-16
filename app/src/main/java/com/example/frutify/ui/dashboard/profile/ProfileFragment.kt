@@ -117,15 +117,15 @@ class ProfileFragment : Fragment() {
 
     private fun openLogoutDialog() {
         val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Confirm Logout")
-            ?.setPositiveButton("yes") { _, _ ->
+        alertDialog.setTitle("KONFRIMASI LOGOUT")
+            ?.setPositiveButton("YES") { _, _ ->
                 sharePref.clearPreferences()
                 val intent = Intent(requireContext(), ChooseRolesActivity::class.java)
                 intent.flags =
                     Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
-            ?.setNegativeButton("no", null)
+            ?.setNegativeButton("NO", null)
         val alert = alertDialog.create()
         alert.show()
     }
