@@ -97,7 +97,7 @@ public class CartJavaActivity extends AppCompatActivity {
     }
 
     public void fetch(){
-        String url = Helper.BASE_URL_2 + "cart/list";
+        String url = Helper.BASE_URL + "cart/list";
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("user_id", String.valueOf(sharePref.getGetUserId()));
@@ -257,7 +257,7 @@ public class CartJavaActivity extends AppCompatActivity {
     }
 
     public void changeCartItem(int qty, String productId){
-        String url = Helper.BASE_URL_2 + "cart/add";
+        String url = Helper.BASE_URL + "cart/add";
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("user_id", String.valueOf(sharePref.getGetUserId()));
