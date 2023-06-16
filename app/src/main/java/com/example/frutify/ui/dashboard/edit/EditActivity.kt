@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -34,6 +35,8 @@ class EditActivity : AppCompatActivity() {
     private var getFile: File? = null
     private var filename: String? = null
     private var quality: String? = null
+    private var fruitId: Int = 1
+    private var idFruit: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,14 +68,23 @@ class EditActivity : AppCompatActivity() {
         fruitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerFruit.adapter = fruitAdapter
 
-        val idFruit = spinnerFruit.selectedItemPosition
+        spinnerFruit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                fruitId = fruitIdArray[position]
+                idFruit = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
+
 
         //receive data from homesellerfragment //detail
         val product = intent.getParcelableExtra<ProductItem>("product")
         val fromHomeSeller = intent.getBooleanExtra("from_home_seller", false)
         val fromBtnDelete = intent.getBooleanExtra("from_btn_delete", false)
         val fruitId = product?.FRUITID
-        val position = fruitIdArray.indexOf(fruitId)
 
         binding.previewImage.setOnClickListener {
             if (fromHomeSeller) {
@@ -81,11 +93,12 @@ class EditActivity : AppCompatActivity() {
                 launcherIntentCameraX.launch(intent)
             } else {
                 startCameraX()
+                finish()
             }
         }
 
         val imageUrl = Constant.BASE_URL_2 +"uploads?path=" +  product?.PRODUCTFILEPATH
-
+        val position = fruitIdArray.indexOf(fruitId)
 
         if (fromHomeSeller) {
             binding.apply {
@@ -93,7 +106,8 @@ class EditActivity : AppCompatActivity() {
                 btnSave.visibility = View.GONE
                 btnDelete.visibility = View.GONE
 
-                etFruit.setSelection(position)
+
+                spinnerFruit.setSelection(position)
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
@@ -112,7 +126,7 @@ class EditActivity : AppCompatActivity() {
                 btnDelete.visibility = View.VISIBLE
 
 
-                etFruit.setSelection(position)
+                spinnerFruit.setSelection(position)
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
@@ -139,7 +153,7 @@ class EditActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
 
             if (validateFields()) {
-                val fruit = fruitIdArray[idFruit]
+                val fruitId = fruitIdArray[idFruit]
                 val userId = sharePref.getUserId
                 val name = binding.etName.text.toString().trim()
                 val desc = binding.etDesc.text.toString().trim()
@@ -148,7 +162,7 @@ class EditActivity : AppCompatActivity() {
 
 
                 if (filename != null) {
-                    addProduct(fruit, userId, name, desc, price, unit, filename!!, quality!!)
+                    addProduct(fruitId!!, userId, name, desc, price, unit, filename!!, quality!!)
                 } else {
                     Toast.makeText(this, "Tolong Masukan Gambar", Toast.LENGTH_SHORT).show()
                 }
@@ -159,7 +173,7 @@ class EditActivity : AppCompatActivity() {
 
             if(validateFields()) {
                 val productId = product?.PRODUCTID
-                val fruit = fruitIdArray[idFruit]
+                val fruitId = fruitIdArray[idFruit]
                 val userId = sharePref.getUserId
                 val name = binding.etName.text.toString().trim()
                 val desc = binding.etDesc.text.toString().trim()
@@ -173,7 +187,7 @@ class EditActivity : AppCompatActivity() {
 
                 updateProduct(
                     productId!!,
-                    fruit,
+                    fruitId!!,
                     userId,
                     name,
                     desc,
