@@ -170,7 +170,7 @@ class CameraActivity : AppCompatActivity() {
                     val quality = it?.PAYLOAD?.quality.toString()
                     val persent = it?.PAYLOAD?.precentage
                     val precentage = persent?.times(100)
-                    val qualityResult = "$quality ${precentage}%"
+                    val qualityResult = "$quality ${precentage?.toInt()}%"
                     val intent = Intent(this, EditActivity::class.java)
                     intent.putExtra(EditActivity.EXTRA_FILENAME, filename)
                     intent.putExtra(EditActivity.EXTRA_QUALITY, qualityResult)
