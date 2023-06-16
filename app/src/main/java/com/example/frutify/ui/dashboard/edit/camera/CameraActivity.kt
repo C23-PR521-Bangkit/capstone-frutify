@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -126,6 +127,7 @@ class CameraActivity : AppCompatActivity() {
                     outputStream.close()
 
                     clasifyViewModel.predictImage(Constant.BASE_URL_2 ,rotatedFile)
+                    clasifyViewModel.isLoading.observe(this@CameraActivity){ showLoading(it) }
                     clasifyViewModel.imagePredictResult.observe(this@CameraActivity) { imageClasifyResponse ->
                         val filename = imageClasifyResponse?.PAYLOAD?.filename.toString()
                         val persent = imageClasifyResponse?.PAYLOAD?.precentage
@@ -165,6 +167,7 @@ class CameraActivity : AppCompatActivity() {
             selectedImageUri.let { uri ->
                 val myFile = uriToFile(uri, this)
                 clasifyViewModel.predictImage(Constant.BASE_URL_2 ,myFile)
+                clasifyViewModel.isLoading.observe(this@CameraActivity){ showLoading(it) }
                 clasifyViewModel.imagePredictResult.observe(this){
                     val filename = it?.PAYLOAD?.filename.toString()
                     val quality = it?.PAYLOAD?.quality.toString()
@@ -180,6 +183,10 @@ class CameraActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun hideSystemUI() {

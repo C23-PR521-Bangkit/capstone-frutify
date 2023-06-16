@@ -109,17 +109,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/divContainerLaporan"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="vertical">-->
-
-<!--                        <include layout="@layout/item_row_product_2"/>-->
-<!--                        <include layout="@layout/item_row_product_2"/>-->
-
-<!--                    </LinearLayout>-->
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view_buyer"
                         android:layout_width="match_parent"
