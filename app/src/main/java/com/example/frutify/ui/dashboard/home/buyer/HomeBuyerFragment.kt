@@ -7,15 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.frutify.R
-import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.model.ProductItemBuyer
 import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.FragmentHomeBuyerBinding
-import com.example.frutify.databinding.FragmentHomeSellerBinding
-import com.example.frutify.ui.dashboard.edit.EditActivity
-import com.example.frutify.ui.dashboard.home.seller.HomeSellerAdapter
-import com.example.frutify.ui.dashboard.home.seller.HomeSellerFragment
 import com.example.frutify.utils.SharePref
 
 

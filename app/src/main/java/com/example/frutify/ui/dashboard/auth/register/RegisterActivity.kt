@@ -1,13 +1,12 @@
 package com.example.frutify.ui.dashboard.auth.register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.frutify.R
 import com.example.frutify.data.viewmodel.AuthViewModel
@@ -69,8 +68,6 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         authViewModel.error.observe(this) { error ->
-            // Show error message
-            // bdrl
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
         authViewModel.registerResult.observe(this) {

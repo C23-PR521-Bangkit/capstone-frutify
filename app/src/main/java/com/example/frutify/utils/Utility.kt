@@ -10,9 +10,6 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
 import com.example.frutify.R
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream

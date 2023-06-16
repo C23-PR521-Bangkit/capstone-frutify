@@ -3,23 +3,18 @@ package com.example.frutify.ui.dashboard.edit
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.camera.core.CameraSelector
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.frutify.MainActivity
@@ -27,11 +22,8 @@ import com.example.frutify.R
 import com.example.frutify.data.model.ProductItem
 import com.example.frutify.data.viewmodel.ProductViewModel
 import com.example.frutify.databinding.ActivityEditBinding
-import com.example.frutify.ui.dashboard.auth.ChooseRolesActivity
-import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.ui.dashboard.edit.camera.CameraActivity
 import com.example.frutify.utils.*
-import com.example.frutify.utils.Utility.rotateBitmap
 import java.io.File
 
 class EditActivity : AppCompatActivity() {

@@ -1,9 +1,8 @@
 package com.example.frutify.ui.dashboard.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.frutify.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.frutify.databinding.ActivityChooseRolesBinding
 import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.utils.Constant

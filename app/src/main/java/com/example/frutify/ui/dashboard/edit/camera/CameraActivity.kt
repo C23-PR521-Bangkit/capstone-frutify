@@ -1,21 +1,17 @@
 package com.example.frutify.ui.dashboard.edit.camera
 
-import android.app.Activity
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -23,8 +19,6 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.frutify.MainActivity
-import com.example.frutify.R
 import com.example.frutify.data.viewmodel.ClasifyViewModel
 import com.example.frutify.databinding.ActivityCameraBinding
 import com.example.frutify.ui.dashboard.edit.EditActivity
@@ -32,7 +26,6 @@ import com.example.frutify.utils.Constant
 import com.example.frutify.utils.Utility
 import com.example.frutify.utils.uriToFile
 import java.io.FileOutputStream
-import java.nio.file.Files.createFile
 
 class CameraActivity : AppCompatActivity() {
 

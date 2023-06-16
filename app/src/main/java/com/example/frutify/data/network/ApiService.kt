@@ -4,7 +4,6 @@ import com.example.frutify.data.model.*
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.io.File
 
 interface ApiService {
 

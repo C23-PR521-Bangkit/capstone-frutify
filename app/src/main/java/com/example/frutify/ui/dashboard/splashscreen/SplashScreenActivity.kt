@@ -1,14 +1,12 @@
 package com.example.frutify.ui.dashboard.splashscreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import com.example.frutify.MainActivity
-import com.example.frutify.R
 import com.example.frutify.databinding.ActivitySplashScreenBinding
 import com.example.frutify.ui.dashboard.auth.ChooseRolesActivity
-import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.utils.SharePref
 
 class SplashScreenActivity : AppCompatActivity() {

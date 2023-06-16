@@ -12,6 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/primary_dark</item>
         <!-- Customize your theme here. -->
+
+<!--        animation-->
+
     </style>
     <style name="Theme.Frutify.NoActionBar">
         <item name="windowActionBar">false</item>

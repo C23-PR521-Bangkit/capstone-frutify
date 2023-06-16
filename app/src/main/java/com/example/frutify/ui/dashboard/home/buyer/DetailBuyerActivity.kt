@@ -1,19 +1,17 @@
 package com.example.frutify.ui.dashboard.home.buyer
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.frutify.MainActivity
 import com.example.frutify.R
 import com.example.frutify.data.model.ProductItemBuyer
 import com.example.frutify.data.viewmodel.CartViewModel
 import com.example.frutify.databinding.ActivityDetailBuyerBinding
 import com.example.frutify.ui.dashboard.cart.CartJavaActivity
 import com.example.frutify.utils.Constant
-import com.example.frutify.utils.Helper
 import com.example.frutify.utils.SharePref
 
 class DetailBuyerActivity : AppCompatActivity() {

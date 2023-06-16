@@ -4,7 +4,6 @@ class Constant {
                 val BASE_URL = "https://frutifyapishapi-v1-qvsopsldnq-uc.a.run.app/"
                 val BASE_URL_2 = "https://frutifyapis-v1-qvsopsldnq-uc.a.run.app/"
             val BASE_URL_3 = "https://frutifyapis-v1-qvsopsldnq-uc.a.run.app//uploads?path="
-//                val BASE_URL = "http://192.168.1.28:888/"
                 val ROLES = "ROLES"
                 val PREF_IS_LOGIN = "PREF_IS_LOGIN"
                 val PREF_EMAIL = "PREF_EMAIL"

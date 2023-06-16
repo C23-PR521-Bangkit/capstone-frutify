@@ -4,12 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.frutify.data.model.ImageClasifyResponse
 import com.example.frutify.data.model.PredictResponse
-import com.example.frutify.data.model.RegisterResponse
-import com.example.frutify.data.network.ApiConfig
 import com.example.frutify.data.network.ApiService
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient

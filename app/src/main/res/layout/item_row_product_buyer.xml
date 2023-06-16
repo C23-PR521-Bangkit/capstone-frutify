@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/placeholder"
+                android:transitionName="img"
                 android:scaleType="centerCrop" />
         </LinearLayout>
 
@@ -60,6 +61,7 @@
 
                 <TextView
                     android:id="@+id/tv_fruit_type"
+                    android:transitionName="type"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -72,6 +74,7 @@
                 <TextView
                     android:id="@+id/btn_quality"
                     android:layout_weight="1"
+                    android:transitionName="quality"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingVertical="2dp"
@@ -122,6 +125,7 @@
 
                 <TextView
                     android:id="@+id/tvPrice"
+                    android:transitionName="price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
@@ -134,6 +138,7 @@
 
             <TextView
                 android:id="@+id/tvSeller"
+                android:transitionName="seller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

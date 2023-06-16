@@ -1,24 +1,19 @@
 package com.example.frutify.ui.dashboard.profile
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.frutify.R
 import com.example.frutify.data.viewmodel.AuthViewModel
-import com.example.frutify.data.viewmodel.ProductViewModel
-import com.example.frutify.databinding.FragmentHomeSellerBinding
 import com.example.frutify.databinding.FragmentProfileBinding
 import com.example.frutify.ui.dashboard.auth.ChooseRolesActivity
-import com.example.frutify.ui.dashboard.auth.login.LoginActivity
 import com.example.frutify.utils.Constant
 import com.example.frutify.utils.SharePref
 
