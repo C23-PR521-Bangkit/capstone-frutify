@@ -158,6 +158,7 @@ public class CartJavaActivity extends AppCompatActivity {
     private void setupMenu(){
         if(data.length() == 0){
             Toast.makeText(CartJavaActivity.this, "Cart kosong", Toast.LENGTH_SHORT).show();
+            
         }
 
         divContainer.removeAllViews();
