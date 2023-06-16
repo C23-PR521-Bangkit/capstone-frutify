@@ -28,6 +28,12 @@ class RegisterActivity : AppCompatActivity() {
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         disableBtnLogin()
 
+        authViewModel.error.observe(this) { error ->
+            if (error != null) {
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.btnRegister.setOnClickListener {
 
              if ((binding.edEmail.text?.length ?: 0) <= 0) {
@@ -66,10 +72,7 @@ class RegisterActivity : AppCompatActivity() {
         authViewModel.isLoading.observe(this) {
             showLoading(it)
         }
-
-        authViewModel.error.observe(this) { error ->
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
-        }
+        
         authViewModel.registerResult.observe(this) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()

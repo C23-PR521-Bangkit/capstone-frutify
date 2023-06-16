@@ -2,6 +2,7 @@ package com.example.frutify.ui.dashboard.home.buyer
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -43,6 +44,8 @@ class DetailBuyerActivity : AppCompatActivity() {
             textFruitName.text = productBuyer?.PRODUCTNAME
             tvQuality.text = productBuyer?.PRODUCTQUALITY
             textDesc.text = productBuyer?.PRODUCTDESCRIPTION
+            val namaa = productBuyer?.USERFULLNAME
+            Log.e("erree", namaa!!)
         }
 
         binding.btnAdd.setOnClickListener {
