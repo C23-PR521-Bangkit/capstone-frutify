@@ -133,7 +133,7 @@ class CameraActivity : AppCompatActivity() {
                         val persent = imageClasifyResponse?.PAYLOAD?.precentage
                         val precentage = persent?.times(100)
                         val quality = imageClasifyResponse?.PAYLOAD?.quality.toString()
-                        val qualityResult = "$quality ${precentage}%"
+                        val qualityResult = "$quality ${precentage?.toInt()}%"
                         val intentRes = Intent(this@CameraActivity, EditActivity::class.java)
                         intentRes.putExtra(EditActivity.EXTRA_FILENAME, filename)
                         intentRes.putExtra(EditActivity.EXTRA_QUALITY, qualityResult)
