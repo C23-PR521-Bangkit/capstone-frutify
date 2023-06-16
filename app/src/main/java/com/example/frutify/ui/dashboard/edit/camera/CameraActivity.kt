@@ -135,10 +135,13 @@ class CameraActivity : AppCompatActivity() {
                     clasifyViewModel.predictImage(Constant.BASE_URL_2 ,rotatedFile)
                     clasifyViewModel.imagePredictResult.observe(this@CameraActivity) { imageClasifyResponse ->
                         val filename = imageClasifyResponse?.PAYLOAD?.filename.toString()
+                        val persent = imageClasifyResponse?.PAYLOAD?.precentage
+                        val precentage = persent?.times(100)
                         val quality = imageClasifyResponse?.PAYLOAD?.quality.toString()
+                        val qualityResult = "$quality ${precentage}%"
                         val intentRes = Intent(this@CameraActivity, EditActivity::class.java)
                         intentRes.putExtra(EditActivity.EXTRA_FILENAME, filename)
-                        intentRes.putExtra(EditActivity.EXTRA_QUALITY, quality)
+                        intentRes.putExtra(EditActivity.EXTRA_QUALITY, qualityResult)
                         intentRes.putExtra("picture", photoFile)
                         intentRes.putExtra(
                             "isBackCamera",
@@ -172,9 +175,12 @@ class CameraActivity : AppCompatActivity() {
                 clasifyViewModel.imagePredictResult.observe(this){
                     val filename = it?.PAYLOAD?.filename.toString()
                     val quality = it?.PAYLOAD?.quality.toString()
+                    val persent = it?.PAYLOAD?.precentage
+                    val precentage = persent?.times(100)
+                    val qualityResult = "$quality ${precentage}%"
                     val intent = Intent(this, EditActivity::class.java)
                     intent.putExtra(EditActivity.EXTRA_FILENAME, filename)
-                    intent.putExtra(EditActivity.EXTRA_QUALITY, quality)
+                    intent.putExtra(EditActivity.EXTRA_QUALITY, qualityResult)
                     intent.putExtra("pictureUri", myFile)
                     startActivity(intent)
                     finish()

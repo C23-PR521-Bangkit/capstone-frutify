@@ -231,7 +231,8 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/tv_quality"
                     tools:text="Good"
-                    tools:layout_editor_absoluteY="0dp" />
+                    tools:layout_editor_absoluteY="0dp"
+                    tools:ignore="MissingConstraints" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

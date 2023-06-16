@@ -32,7 +32,7 @@ data class PayloadPredict(
 	val priceEstimation: Int? = null,
 
 	@field:SerializedName("precentage")
-	val precentage: Any? = null,
+	val precentage: Float? = null,
 
 	@field:SerializedName("quality")
 	val quality: String? = null

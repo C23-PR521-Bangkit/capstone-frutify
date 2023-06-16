@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -104,7 +105,8 @@ class EditActivity : AppCompatActivity() {
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
-                tvQualityResult.setText(product.PRODUCTQUALITY)
+                tvQuality.text = "Quality : ${product.PRODUCTQUALITY}"
+                Log.e("erce", tvQualityResult.toString())
                 Glide.with(this@EditActivity)
                     .load(imageUrl)
                     .error(R.drawable.apel)
@@ -122,7 +124,7 @@ class EditActivity : AppCompatActivity() {
                 etName.setText(product?.PRODUCTNAME)
                 etDesc.setText(product?.PRODUCTDESCRIPTION)
                 etPrice.setText(product?.PRODUCTPRICE!!.toString())
-                tvQualityResult.setText(product.PRODUCTQUALITY)
+                tvQuality.text = "Quality : ${product.PRODUCTQUALITY}"
 
                 Glide.with(this@EditActivity)
                     .load(imageUrl)
