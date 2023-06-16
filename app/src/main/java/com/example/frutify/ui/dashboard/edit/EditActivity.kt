@@ -367,13 +367,13 @@ class EditActivity : AppCompatActivity() {
 
     private fun openDeleteDialog(productId: Int, userId: Int) {
         val alertDialog = AlertDialog.Builder(this)
-        alertDialog.setTitle("Confirm Delete")
-            ?.setPositiveButton("yes") { _, _ ->
+        alertDialog.setTitle("KONFIRMASI HAPUS")
+            ?.setPositiveButton("YES") { _, _ ->
 
 
                 deleteProduct(productId!!, userId)
             }
-            ?.setNegativeButton("no", null)
+            ?.setNegativeButton("NO", null)
         val alert = alertDialog.create()
         alert.show()
     }
